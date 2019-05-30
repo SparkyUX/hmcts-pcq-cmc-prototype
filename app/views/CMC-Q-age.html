@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+{% from "input/macro.njk" import govukInput %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "index.html"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/form-handler" method="post" novalidate>
+          <h1 class="govuk-heading-xl">What was your age last birthday?</h1>
+        {{ govukInput({
+          label: {
+          text: "Age last birthday",
+          classes: "govuk-heading-xl",
+          isPageHeading: true
+        
+          },
+          classes: "govuk-input--width-3",
+          id: "age-last-birthday",
+          name: "age-last-birthday",
+          hint: {
+            text: "Enter a number in the range 16 - 120"
+                }
+        }) }}
+
+        <p>or</p>
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "prefer-not-to-say",
+          name: "prefer-not-to-say",
+          items: [
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        })
+        }}
+
+       {{ govukButton({
+          text: "Continue",
+          href: "CMC-Q-sex.html"
+
+        }) }} 
+        
+      </form>
+    </div>
+  </div>
+{% endblock %}

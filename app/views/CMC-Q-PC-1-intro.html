@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Thank you for your payment
+      </h1>
+      <p>
+        Before we provide you with your claim number and information about what to do next, we'd like to ask you a few questions to help us provide better, fairer services for all.
+      </p>
+
+      <p>
+        Your answers are confidential, they will not be shared with anyone involved in your case.
+      </p>
+
+     {{ govukButton({
+        text: "Continue",
+        href: "CMC-Q-age.html"
+      }) }}
+
+       <p>
+        These questions are optional, you can go directly to your claim confirmation where you will get your claim number and information on what to do next.
+      </p>
+
+      <a href="myclaim.html">Go to my claim information</a>
+      <p></p>
+
+    </div>
+</div>
+
+{% endblock %}

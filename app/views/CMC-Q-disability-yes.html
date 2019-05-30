@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "CMC-Q-disability.html"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/form-handler" method="post" novalidate>
+
+        {{ govukRadios({
+          idPrefix: "disability-yes",
+          name: "disability-yes",
+          
+           fieldset: {
+            legend: {
+              text: "Do any of your conditions or illnesses reduce your ability to carry out day-to day activities?",
+              classes: "govuk-fieldset__legend--xl",
+              isPageHeading: true
+
+            }
+          },
+        
+        items: [
+            {
+              value: "yes-a-little",
+              text: "Yes, limited a little"
+            },
+            {
+              value: "yes-a-lot",
+              text: "Yes, limited a lot"
+            },
+            {
+              value: "not-at-all",
+              text: "Not at all"
+            }
+          ]
+
+          }) }}
+
+        {{ govukButton({
+          text: "Continue",
+          href: "CMC-Q-disability-yes-detail.html"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

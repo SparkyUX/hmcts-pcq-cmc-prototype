@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/CMC-Q-pregnancy.html"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/form-handler" method="post" novalidate>
+
+        {{ govukRadios({
+          idPrefix: "what-is-your-sexual-orientation",
+          name: "what-is-your-sexual-orientation",
+          fieldset: {
+            legend: {
+              text: "Which of the following best describes how you think of yourself?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "heterosexual-straight",
+              text: "Heterosexual or straight"
+            },
+            {
+              value: "gay-lesbian",
+              text: "Gay or Lesbian"
+            },
+            {
+              value: "bisexual",
+              text: "Bisexual"
+            },
+            {
+              value: "other",
+              text: "Other"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Please enter how you think of yourself",
+            classes: "govuk-label--x1"
+            },
+            hint: {
+              text: "Only complete this if you have answered Other above"
+              },
+                id: "other",
+              name: "other"
+
+            }) }}
+
+        {{ govukButton({
+          text: "Continue",
+          href: "CMC-Q-marriage-or-civil-partnership.html"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

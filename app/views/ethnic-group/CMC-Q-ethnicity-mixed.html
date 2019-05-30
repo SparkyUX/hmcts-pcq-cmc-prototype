@@ -1,0 +1,75 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "/CMC-Q-ethnicity.html"
+  }) }}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/summary" method="post">
+        {% from "radios/macro.njk" import govukRadios %}
+        {% from "input/macro.njk" import govukInput %}
+
+        {% set mixedOtherHtml %}
+          {{ govukInput({
+            id: "ethnicity-white-other",
+            name: "ethnicity-white-other",
+            classes: "govuk-!-width-two-thirds",
+            label: {
+              text: "Your Mixed background (optional)"
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          idPrefix: "ethnic-group",
+          name: "ethnic-group",
+          fieldset: {
+            legend: {
+              text: "Which one best describes your Mixed or Multiple ethnic groups background?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              text: "Asian and White"
+            },
+            {
+              text: "Black African and White"
+            },    
+            {
+              text: "Black Caribbean and White"
+            },
+            {
+              text: "Another Mixed background",
+              conditional: {
+                html: mixedOtherHtml
+              }
+            }
+          ]
+        }) }}
+        {{ govukButton({
+          text: "Continue",
+          href: "/CMC-Q-pregnancy.html"
+        }) }}
+      </form>
+    </div>
+</div>
+
+{% endblock %}

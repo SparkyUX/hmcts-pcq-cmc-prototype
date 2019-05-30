@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+{% from "textarea/macro.njk" import govukTextarea %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "CMC-Q-disability.html"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/form-handler" method="post" novalidate>
+
+        {{ govukRadios({
+          idPrefix: "religion-or-belief",
+          name: "religion-or-belief",
+          fieldset: {
+            legend: {
+              text: "What is your religion?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "no-religion",
+              text: "No religion"
+            },
+            {
+              value: "christian",
+              text: "Christian (all denominations)"
+            },
+            {
+              value: "buddhist",
+              text: "Buddist"
+            },
+            {
+              value: "hindu",
+              text: "Hindu"
+            },
+            {
+              value: "jewish",
+              text: "Jewish"
+            },
+            {
+              value: "muslim",
+              text: "Muslim"
+            },
+            {
+              value: "sikh",
+              text: "Sikh"
+            },
+            {
+              value: "any-other",
+              text: "Any other religion, please describe"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}          
+
+          {{ govukTextarea({
+            name: "other-detail",
+            id: "other- detail",
+            label: {
+              text: "Please describe your religion"
+            },
+            hint: {
+              text: "Only complete this if you have answered Any other religion above"
+            
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue",
+          href: "CMC-Q-ethnicity.html"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
