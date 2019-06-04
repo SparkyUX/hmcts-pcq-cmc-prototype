@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
 
+{% block pageTitle %}
+  Money Claims Prototype
+{% endblock %}
+
 {% from "back-link/macro.njk" import govukBackLink %}
 {% from "radios/macro.njk" import govukRadios %}
 {% from "button/macro.njk" import govukButton %}
@@ -8,14 +12,14 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "CMC-Q-disability.html"
+    href: "../disability.html"
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/form-handler" method="post" novalidate>
+      <form action="/disability-details" method="post" novalidate>
 
         {{ govukRadios({
           idPrefix: "disability-yes",
@@ -32,25 +36,34 @@
         
         items: [
             {
-              value: "yes-a-little",
+              value: "Yes, limited a little",
               text: "Yes, limited a little"
             },
             {
-              value: "yes-a-lot",
+              value: "Yes, limited a lot",
               text: "Yes, limited a lot"
             },
             {
-              value: "not-at-all",
+              value: "Not at all",
               text: "Not at all"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "Prefer not to say",
+              text: "Prefer not to say"
             }
           ]
 
           }) }}
 
         {{ govukButton({
-          text: "Continue",
-          href: "CMC-Q-disability-yes-detail.html"
+          text: "Continue"
         }) }}
+         <br>
+        <a href="../index.html" class="govuk-link">Cancel and return to claim information</a>
+
       </form>
     </div>
   </div>

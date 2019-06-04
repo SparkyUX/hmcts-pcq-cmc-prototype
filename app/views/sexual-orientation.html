@@ -7,7 +7,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/CMC-Q-pregnancy.html"
+    href: "/pregnancy.html"
   }) }}
 {% endblock %}
 
@@ -15,6 +15,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form action="/form-handler" method="post" novalidate>
+        {% set otherOtherHtml %}
+        {{ govukInput({
+          id: "sexual-orientation-other",
+          name: "sexual-orientation-other",
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            text: "Please enter how you think of yourself"
+          }
+        }) }}
+        {% endset -%}
 
         {{ govukRadios({
           idPrefix: "what-is-your-sexual-orientation",
@@ -41,7 +51,10 @@
             },
             {
               value: "other",
-              text: "Other"
+              text: "Other",
+                conditional: {
+                html: otherOtherHtml
+               }
             },
             {
               divider: "or"
@@ -53,23 +66,13 @@
           ]
         }) }}
 
-        {{ govukInput({
-          label: {
-            text: "Please enter how you think of yourself",
-            classes: "govuk-label--x1"
-            },
-            hint: {
-              text: "Only complete this if you have answered Other above"
-              },
-                id: "other",
-              name: "other"
-
-            }) }}
-
         {{ govukButton({
           text: "Continue",
-          href: "CMC-Q-marriage-or-civil-partnership.html"
+          href: "marriage-or-civil-partnership.html"
         }) }}
+         <br>
+        <a href="index.html" class="govuk-link">Return to your claim information</a>
+
       </form>
     </div>
   </div>

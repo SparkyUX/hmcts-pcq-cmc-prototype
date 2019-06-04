@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+  Money Claims Prototype
 {% endblock %}
 
 {% from "back-link/macro.njk" import govukBackLink %}
@@ -11,7 +11,7 @@
 
   {{ govukBackLink({
     text: "Back",
-    href: "/CMC-Q-ethnicity.html"
+    href: "/ethnicity.html"
   }) }}
 {% endblock %}
 
@@ -66,8 +66,11 @@
         }) }}
         {{ govukButton({
           text: "Continue",
-          href: "/CMC-Q-pregnancy.html"
+          href: "/pregnancy.html"
         }) }}
+         <br>
+        <a href="../index.html" class="govuk-link">Cancel and return to claim information</a>
+
       </form>
     </div>
 </div>

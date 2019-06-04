@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
 
+{% block pageTitle %}
+  Money Claims Prototype
+{% endblock %}
+
 {% from "back-link/macro.njk" import govukBackLink %}
 {% from "radios/macro.njk" import govukRadios %}
 {% from "button/macro.njk" import govukButton %}
@@ -7,61 +11,53 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/CMC-Q-sex.html"
+    href: "/gender.html"
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/form-handler" method="post" novalidate>
-        
-        {% set otherOtherHtml %}
-        {{ govukInput({
-          id: "gender-other",
-          name: "gender-other",
-          classes: "govuk-!-width-two-thirds",
-          label: {
-            text: "Please enter your gender"
-          }
-        }) }}
-      {% endset -%}
+      <form action="/disability-answer" method="post" novalidate>
+
         {{ govukRadios({
-          idPrefix: "gender-same-as-birth",
-          name: "gender-same-as-birth",
+          idPrefix: "disability",
+          name: "disability-information",
           fieldset: {
             legend: {
-              text: "Is your gender the same as the sex you were registered at birth?",
+              text: "Do you have any physical or mental health conditions or illnesses lasting or expected to last 12 months or more?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--xl"
             }
           },
           items: [
             {
-              value: "yes",
+              value: "Yes",
+              
               text: "Yes"
             },
             {
-              value: "no",
-              text: "No",
-                conditional: {
-                 html: otherOtherHtml
-                }
+              value: "No",
+              
+              text: "No"
             },
             {
               divider: "or"
-             },
-            {
-              value: "prefer-not-to-say",
+            },
+           {
+              value: "Prefer not to say",
+            
               text: "Prefer not to say"
             }
           ]
         }) }}
- 
+
         {{ govukButton({
-          text: "Continue",
-          href: "CMC-Q-disability.html"
+          text: "Continue"
         }) }}
+         <br>
+        <a href="/index.html" class="govuk-link">Cancel and return to claim information</a>
+
       </form>
     </div>
   </div>

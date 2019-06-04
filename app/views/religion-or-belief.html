@@ -8,7 +8,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "CMC-Q-disability.html"
+    href: "disability.html"
   }) }}
 {% endblock %}
 
@@ -16,6 +16,18 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form action="/form-handler" method="post" novalidate>
+
+        {% set otherOtherHtml %}
+        {{ govukTextarea({
+          id: "religion-other",
+          name: "religion-other",
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            text: "Please describe your religion"
+          }
+        }) }}
+        {% endset -%}
+
 
         {{ govukRadios({
           idPrefix: "religion-or-belief",
@@ -57,32 +69,29 @@
               text: "Sikh"
             },
             {
-              value: "any-other",
-              text: "Any other religion, please describe"
+              value: "other",
+              text: "Any other religion",
+                conditional: {
+                html: otherOtherHtml
+               }
+            },
+            {
+              divider: "or"
             },
             {
               value: "prefer-not-to-say",
               text: "Prefer not to say"
             }
           ]
-        }) }}          
-
-          {{ govukTextarea({
-            name: "other-detail",
-            id: "other- detail",
-            label: {
-              text: "Please describe your religion"
-            },
-            hint: {
-              text: "Only complete this if you have answered Any other religion above"
-            
-            }
-          }) }}
+        }) }} 
 
         {{ govukButton({
           text: "Continue",
-          href: "CMC-Q-ethnicity.html"
+          href: "ethnicity.html"
         }) }}
+         <br>
+        <a href="/index.html" class="govuk-link">Cancel and return to claim information</a>
+
       </form>
     </div>
   </div>

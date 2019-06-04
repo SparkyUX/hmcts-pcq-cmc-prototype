@@ -1,11 +1,16 @@
 {% extends "layout.html" %}
 
+{% block pageTitle %}
+  Money Claims Prototype
+{% endblock %}
+
 {% from "back-link/macro.njk" import govukBackLink %}
 {% from "button/macro.njk" import govukButton %}
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back"
+    text: "Back",
+    href: "marriage-or-civil-partnership.html"
   }) }}
 {% endblock %}
 
@@ -25,10 +30,13 @@
       </p>
 
      {{ govukButton({
-        text: "I agree - submit"
+        text: "Accept and send",
+        href: "/thank-you.html"
       }) }}
+
       <p>
-      <a href="account.html">Cancel and go back to my account</a></p>
+        <a href="/index.html" class="govuk-link">Cancel and return to claim information</a>
+      </p>
     </div>
 </div>
 
