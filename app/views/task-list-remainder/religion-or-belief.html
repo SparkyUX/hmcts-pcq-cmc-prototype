@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+{% from "textarea/macro.njk" import govukTextarea %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "disability.html"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/form-handler" method="post" novalidate>
+
+        {% set otherOtherHtml %}
+        {{ govukTextarea({
+          id: "religion-other",
+          name: "religion-other",
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            text: "Please describe your religion"
+          }
+        }) }}
+        {% endset -%}
+
+
+        {{ govukRadios({
+          idPrefix: "religion-or-belief",
+          name: "religion-or-belief",
+          fieldset: {
+            legend: {
+              text: "What is your religion?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "no-religion",
+              text: "No religion"
+            },
+            {
+              value: "christian",
+              text: "Christian (all denominations)"
+            },
+            {
+              value: "buddhist",
+              text: "Buddist"
+            },
+            {
+              value: "hindu",
+              text: "Hindu"
+            },
+            {
+              value: "jewish",
+              text: "Jewish"
+            },
+            {
+              value: "muslim",
+              text: "Muslim"
+            },
+            {
+              value: "sikh",
+              text: "Sikh"
+            },
+            {
+              value: "other",
+              text: "Any other religion",
+                conditional: {
+                html: otherOtherHtml
+               }
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }} 
+
+        {{ govukButton({
+          text: "Continue",
+          href: "ethnicity.html"
+        }) }}
+         <br>
+        <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list" class="govuk-link">Cancel and return to claim information</a>
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

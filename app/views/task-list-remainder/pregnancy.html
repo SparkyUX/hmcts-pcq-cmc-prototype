@@ -1,9 +1,5 @@
 {% extends "layout.html" %}
 
-{% block pageTitle %}
-  Money Claims Prototype
-{% endblock %}
-
 {% from "back-link/macro.njk" import govukBackLink %}
 {% from "radios/macro.njk" import govukRadios %}
 {% from "button/macro.njk" import govukButton %}
@@ -11,7 +7,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "introduction.html"
+    href: "/ethnicity.html"
   }) }}
 {% endblock %}
 
@@ -20,35 +16,28 @@
     <div class="govuk-grid-column-two-thirds">
       <form action="/form-handler" method="post" novalidate>
 
-      {% set otherOtherHtml %}
-        {{ govukInput({
-          id: "sex-other",
-          name: "sex-other",
-          classes: "govuk-!-width-two-thirds",
-          label: {
-            text: "Please enter your sex"
-          }
-        }) }}
-      {% endset -%}
-
         {{ govukRadios({
-          idPrefix: "what-is-your-sex",
-          name: "what-is-your-sex",
+          idPrefix: "are-you-pregnant",
+          name: "are-you-pregnant",
           fieldset: {
             legend: {
-              text: "What is your sex?",
+              text: "Are you currently pregnant or have you been pregnant in the last year?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--xl"
             }
           },
           items: [
             {
-              value: "male",
-              text: "Male"
+              value: "yes",
+              text: "Yes"
             },
             {
-              value: "female",
-              text: "Female"
+              value: "no",
+              text: "No"
+            },
+            {
+              value: "not-applicable",
+              text: "Not applicable"
             },
             {
               divider: "or"
@@ -60,14 +49,12 @@
           ]
         }) }}
 
-
         {{ govukButton({
           text: "Continue",
-          href: "gender.html"
-
+          href: "sexual-orientation.html"
         }) }}
          <br>
-        <a href="/index.html" class="govuk-link">Cancel and return to claim information</a>
+        <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/dashboard/home" class="govuk-link">Cancel and return to claim information</a>
 
       </form>
     </div>
