@@ -75,7 +75,7 @@ router.post('/ethnicity-answer', function (req, res) {
     res.redirect('ethnic-group/ethnicity-mixed')
   } else if (ethnicGroup == "Asian or Asian British") {
     res.redirect('ethnic-group/ethnicity-asian')
-  } else if (ethnicGroup == "Black, African, Black British or Carribean") {
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
     res.redirect('ethnic-group/ethnicity-black')
   } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('ethnic-group/ethnicity-another')
@@ -96,7 +96,7 @@ router.post('/ethnicity-answer-reduced', function (req, res) {
     res.redirect('ethnic-group/ethnicity-mixed')
   } else if (ethnicGroup == "Asian or Asian British") {
     res.redirect('ethnic-group/ethnicity-asian')
-  } else if (ethnicGroup == "Black, African, Black British or Carribean") {
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
     res.redirect('ethnic-group/ethnicity-black')
   } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('ethnic-group/ethnicity-another')
