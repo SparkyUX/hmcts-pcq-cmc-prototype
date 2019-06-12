@@ -6,8 +6,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back",
-    href: "/ethnicity.html"
+    text: "Back"
   }) }}
 {% endblock %}
 
@@ -17,13 +16,13 @@
       <form action="/form-handler" method="post" novalidate>
 
         {{ govukRadios({
-          idPrefix: "are-you-pregnant",
-          name: "are-you-pregnant",
+          idPrefix: "income",
+          name: "income",
           fieldset: {
             legend: {
-              text: "Are you currently pregnant or have you been pregnant in the last year?",
+              text: "Do you have any educational qualifications for which you received a certificate?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
@@ -34,10 +33,6 @@
             {
               value: "no",
               text: "No"
-            },
-            {
-              value: "not-applicable",
-              text: "Not applicable"
             },
             {
               divider: "or"
@@ -51,10 +46,10 @@
 
         {{ govukButton({
           text: "Continue",
-          href: "sexual-orientation.html"
+          href: "/english-as-first-language.html"
         }) }}
          <br>
-        <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/dashboard/home" class="govuk-link">Cancel and return to claim information</a>
+        <a href="/blank.html" class="govuk-link">Cancel and return to claim information</a>
 
       </form>
     </div>

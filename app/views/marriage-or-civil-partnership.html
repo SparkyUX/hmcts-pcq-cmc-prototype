@@ -6,8 +6,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back",
-    href: "sexual-orientation.html"
+    text: "Back"
   }) }}
 {% endblock %}
 
@@ -23,7 +22,7 @@
             legend: {
               text: "Are you married or in a legally registered civil partnership?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
@@ -47,7 +46,7 @@
 
         {{ govukButton({
           text: "Continue",
-          href: "/confirm.html"
+          href: "/education.html"
         }) }}
          <br>
         <a href="blank-page" class="govuk-link">Cancel and return to claim information</a>

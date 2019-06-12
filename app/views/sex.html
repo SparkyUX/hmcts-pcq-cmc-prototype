@@ -10,8 +10,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back",
-    href: "introduction.html"
+    text: "Back"
   }) }}
 {% endblock %}
 
@@ -20,17 +19,6 @@
     <div class="govuk-grid-column-two-thirds">
       <form action="/form-handler" method="post" novalidate>
 
-      {% set otherOtherHtml %}
-        {{ govukInput({
-          id: "sex-other",
-          name: "sex-other",
-          classes: "govuk-!-width-two-thirds",
-          label: {
-            text: "Please enter your sex"
-          }
-        }) }}
-      {% endset -%}
-
         {{ govukRadios({
           idPrefix: "what-is-your-sex",
           name: "what-is-your-sex",
@@ -38,7 +26,7 @@
             legend: {
               text: "What is your sex?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
@@ -59,15 +47,21 @@
             }
           ]
         }) }}
-
-
-        {{ govukButton({
-          text: "Continue",
-          href: "gender.html"
-
-        }) }}
-         <br>
-        <a href="blank-page" class="govuk-link">Cancel and return to claim information</a>
+        {% if data['defendant'] == 'true' %} 
+          {{ govukButton({
+            text: "Continue",
+            href: "ethnicity?defendant=true&"
+            }) }}
+            <br>
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/dashboard/new-dashboard/defendant/all-claims" class="govuk-link">Cancel and return to claim information</a>
+        {% else %}
+          {{ govukButton({
+            text: "Continue",
+            href: "ethnicity?defendant=false&"
+          }) }}
+            <br>
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/dashboard/new-dashboard/claimant/all-claims" class="govuk-link">Cancel and return to claim information</a>
+        {% endif %}
 
       </form>
     </div>

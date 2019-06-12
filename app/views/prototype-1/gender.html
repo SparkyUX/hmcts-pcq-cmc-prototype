@@ -11,63 +11,63 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "introduction.html"
+    href: "/sex.html"
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/form-handler" method="post" novalidate>
-
-      {% set otherOtherHtml %}
+      <form action="/disability.html" method="post" novalidate>
+        
+        {% set otherOtherHtml %}
         {{ govukInput({
-          id: "sex-other",
-          name: "sex-other",
+          id: "gender-other",
+          name: "gender-other",
           classes: "govuk-!-width-two-thirds",
           label: {
-            text: "Please enter your sex"
+            text: "Please enter your gender"
           }
         }) }}
       {% endset -%}
-
         {{ govukRadios({
-          idPrefix: "what-is-your-sex",
-          name: "what-is-your-sex",
+          idPrefix: "gender-same-as-birth",
+          name: "gender-same-as-birth",
           fieldset: {
             legend: {
-              text: "What is your sex?",
+              text: "Is your gender the same as the sex you were registered at birth?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
             {
-              value: "male",
-              text: "Male"
+              value: "yes",
+              text: "Yes"
             },
             {
-              value: "female",
-              text: "Female"
+              value: "no",
+              text: "No",
+                conditional: {
+                 html: otherOtherHtml
+                }
             },
             {
               divider: "or"
-            },
+             },
             {
               value: "prefer-not-to-say",
               text: "Prefer not to say"
             }
           ]
         }) }}
-
-
+ 
         {{ govukButton({
           text: "Continue",
-          href: "ethnicity.html"
-
+          href: "disability.html"
         }) }}
          <br>
-        <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/dashboard/new-dashboard/claimant/all-claims" class="govuk-link">Cancel and return to claim information</a>
+        <a href="blank-page" class="govuk-link">Cancel and return to claim information</a>
 
       </form>
     </div>

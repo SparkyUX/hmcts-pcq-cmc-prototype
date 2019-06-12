@@ -7,7 +7,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/pregnancy.html"
+    href: "english-as-first-language.html"
   }) }}
 {% endblock %}
 
@@ -15,46 +15,33 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form action="/form-handler" method="post" novalidate>
-        {% set otherOtherHtml %}
-        {{ govukInput({
-          id: "sexual-orientation-other",
-          name: "sexual-orientation-other",
-          classes: "govuk-!-width-two-thirds",
-          label: {
-            text: "Please enter how you think of yourself"
-          }
-        }) }}
-        {% endset -%}
 
         {{ govukRadios({
-          idPrefix: "what-is-your-sexual-orientation",
-          name: "what-is-your-sexual-orientation",
+          idPrefix: "english-level",
+          name: "english-level",
           fieldset: {
             legend: {
-              text: "Which of the following best describes how you think of yourself?",
+              text: "How well can you speak English?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
             {
-              value: "heterosexual-straight",
-              text: "Heterosexual or straight"
+              value: "very-well",
+              text: "Very Well"
             },
             {
-              value: "gay-lesbian",
-              text: "Gay or Lesbian"
+              value: "well",
+              text: "Well"
             },
             {
-              value: "bisexual",
-              text: "Bisexual"
+              value: "not-well",
+              text: "Not Well"
             },
             {
-              value: "other",
-              text: "Other",
-                conditional: {
-                html: otherOtherHtml
-               }
+              value: "not-at-all",
+              text: "Not at all"
             },
             {
               divider: "or"
@@ -68,10 +55,10 @@
 
         {{ govukButton({
           text: "Continue",
-          href: "marriage-or-civil-partnership.html"
+          href: "/confirm.html"
         }) }}
          <br>
-        <a href="blank-page" class="govuk-link">Cancel and return to claim information</a>
+        <a href="/blank.html" class="govuk-link">Cancel and return to claim information</a>
 
       </form>
     </div>

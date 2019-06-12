@@ -7,8 +7,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back",
-    href: "disability.html"
+    text: "Back"
   }) }}
 {% endblock %}
 
@@ -30,13 +29,13 @@
 
 
         {{ govukRadios({
-          idPrefix: "religion-or-belief",
-          name: "religion-or-belief",
+          idPrefix: "religion",
+          name: "religion",
           fieldset: {
             legend: {
               text: "What is your religion?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
@@ -87,7 +86,7 @@
 
         {{ govukButton({
           text: "Continue",
-          href: "ethnicity.html"
+          href: "pregnancy.html"
         }) }}
          <br>
         <a href="blank-page" class="govuk-link">Cancel and return to claim information</a>

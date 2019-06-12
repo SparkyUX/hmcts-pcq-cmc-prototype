@@ -5,7 +5,8 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back"
+    text: "Back",
+    href: "/index.html"
   }) }}
 {% endblock %}
 
@@ -26,7 +27,7 @@
 
      {{ govukButton({
         text: "Continue",
-        href: "gender.html"
+        href: "sex.html"
       }) }}
       <br>
         <a href="blank-page" class="govuk-link">Cancel and return to claim information</a>

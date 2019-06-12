@@ -44,7 +44,7 @@
             legend: {
               text: "Do any of these conditions or illnesses affect you in any of the following areas?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              classes: "govuk-fieldset__legend--l"
               }
 
              },
@@ -82,7 +82,7 @@
             },
             {
               value: "Learning",
-              text: "Learning or understanding or concentrating"
+              text: "Learning, understanding or concentrating"
             },  
             {
               value: "memory",
@@ -94,7 +94,7 @@
             },
             {
               value: "stamina-breathing-fatigue",
-              text: "Stamina/breathing/fatigue"
+              text: "Stamina, breathing or fatigue"
             },
             {
               value: "social-behaviour",
@@ -116,13 +116,34 @@
             }
             ]
           }) }}
+        {{ govukRadios({
+          idPrefix: "disability-pnts-none",
+          name: "disability-pnts-none",
+          fieldset: {
+            legend: {
+              text: "or",
+
+              classes: "govuk-body-s"
+            }
+          },
+          items: [
+            {
+              value: "None of the above",
+              text: "None of the above"
+            },
+            {
+              value: "prefer not to say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
 
         {{ govukButton({
           text: "Continue",
           href: "../religion-or-belief.html"
         }) }}
          <br>
-        <a href="../index.html" class="govuk-link">Return to your claim information</a>
+        <a href="../blank-page" class="govuk-link">Cancel and return to claim information</a>
 
       </form>
     </div>

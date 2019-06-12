@@ -6,8 +6,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back",
-    href: "/ethnicity.html"
+    text: "Back"
   }) }}
 {% endblock %}
 
@@ -23,7 +22,7 @@
             legend: {
               text: "Are you currently pregnant or have you been pregnant in the last year?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
@@ -34,10 +33,6 @@
             {
               value: "no",
               text: "No"
-            },
-            {
-              value: "not-applicable",
-              text: "Not applicable"
             },
             {
               divider: "or"

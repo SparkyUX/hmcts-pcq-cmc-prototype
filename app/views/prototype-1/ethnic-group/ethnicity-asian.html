@@ -1,3 +1,4 @@
+
 {% extends "layout.html" %}
 
 {% block pageTitle %}
@@ -14,23 +15,24 @@
   }) }}
 {% endblock %}
 
+
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       <form action="/summary" method="post">
-      {% from "input/macro.njk" import govukInput %}
-      {% from "fieldset/macro.njk" import govukFieldset %}
-      {% from "radios/macro.njk" import govukRadios %}
 
-      {% set otherOtherHtml %}
+      {% from "radios/macro.njk" import govukRadios %}
+      {% from "input/macro.njk" import govukInput %}
+
+      {% set asianOtherHtml %}
         {{ govukInput({
-          id: "ethnicity-mixed-other",
-          name: "ethnicity-mixed-other",
+          id: "ethnicity-asian-other",
+          name: "ethnicity-asian-other",
           classes: "govuk-!-width-two-thirds",
           label: {
-            text: "Your ethnic background (optional)"
+            text: "Your Asian background (optional)"
           }
         }) }}
       {% endset -%}
@@ -40,32 +42,50 @@
         name: "ethnic-group",
         fieldset: {
           legend: {
-            text: "Which one best describes your background?",
+            text: "Which one best describes your Asian or Asian British background?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
         },
         items: [
           {
-            text: "Arab"
+            text: "Bangladeshi"
           },
           {
-            text: "Another ethnic background",
+            text: "Chinese"
+          },
+          {
+            text: "Indian"
+          },
+          {
+            text: "Pakistani"
+          },
+          {
+            text: "Another Asian background",
             conditional: {
-              html: otherOtherHtml
+              html: asianOtherHtml
             }
-          }
+          },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
         ]
-      }) }}
-      
-        {{ govukButton({
-          text: "Continue",
-          href: "/pregnancy.html"
         }) }}
-         <br>
-        <a href="../index.html" class="govuk-link">Cancel and return to claim information</a>
 
+        {{ govukButton({
+            text: "Continue",
+            href: "/pregnancy.html"
+        }) }}
+
+        <br>
+        <a href="../blank-page" class="govuk-link">Cancel and return to claim information</a>
+        
       </form>
+
     </div>
 </div>
 

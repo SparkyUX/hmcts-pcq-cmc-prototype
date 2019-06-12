@@ -1,9 +1,5 @@
 {% extends "layout.html" %}
 
-{% block pageTitle %}
-  Money Claims Prototype
-{% endblock %}
-
 {% from "back-link/macro.njk" import govukBackLink %}
 {% from "radios/macro.njk" import govukRadios %}
 {% from "button/macro.njk" import govukButton %}
@@ -11,7 +7,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/sex.html"
+    href: "sexual-orientation.html"
   }) }}
 {% endblock %}
 
@@ -19,25 +15,15 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form action="/form-handler" method="post" novalidate>
-        
-        {% set otherOtherHtml %}
-        {{ govukInput({
-          id: "gender-other",
-          name: "gender-other",
-          classes: "govuk-!-width-two-thirds",
-          label: {
-            text: "Please enter your gender"
-          }
-        }) }}
-      {% endset -%}
+
         {{ govukRadios({
-          idPrefix: "gender-same-as-birth",
-          name: "gender-same-as-birth",
+          idPrefix: "marriage-or-civil-partnership",
+          name: "marriage-or-civil-partnership",
           fieldset: {
             legend: {
-              text: "Is your gender the same as the sex you were registered at birth?",
+              text: "Are you married or in a legally registered civil partnership?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
@@ -47,27 +33,24 @@
             },
             {
               value: "no",
-              text: "No",
-                conditional: {
-                 html: otherOtherHtml
-                }
+              text: "No"
             },
             {
               divider: "or"
-             },
+            },
             {
               value: "prefer-not-to-say",
               text: "Prefer not to say"
             }
           ]
         }) }}
- 
+
         {{ govukButton({
           text: "Continue",
-          href: "disability.html"
+          href: "/income.html"
         }) }}
          <br>
-        <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/dashboard/home" class="govuk-link">Cancel and return to claim information</a>
+        <a href="blank-page" class="govuk-link">Cancel and return to claim information</a>
 
       </form>
     </div>

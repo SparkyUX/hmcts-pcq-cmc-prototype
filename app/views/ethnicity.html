@@ -10,15 +10,18 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back",
-    href: "religion-or-belief.html"
+    text: "Back"
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/ethnicity-answer" method="post" novalidate>
+      {% if data['defendant'] == 'true' %} 
+        <form action="/ethnicity-answer-reduced-defendant" method="post" novalidate>
+      {% else %}
+        <form action="/ethnicity-answer-reduced-claimant" method="post" novalidate>
+      {% endif %}
 
 {{ govukRadios({
   idPrefix: "ethnic-group",
@@ -27,7 +30,7 @@
     legend: {
       text: "What is your ethnic group?",
       isPageHeading: true,
-      classes: "govuk-fieldset__legend--xl"
+      classes: "govuk-fieldset__legend--l"
     }
   },
   items: [
@@ -85,7 +88,7 @@
       divider: "or"
     },
     {
-      value: "prefer-not-to-say",
+      value: "Prefer not to say",
       text: "Prefer not to say",
       label: {
         classes: 'govuk-label'
@@ -99,8 +102,13 @@
           text: "Continue"
 
         }) }}
-        <br>
-        <a href="blank-page" class="govuk-link">Cancel and return to claim information</a>
+        {% if data['defendant'] == 'true' %} 
+            <br>
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/dashboard/new-dashboard/defendant/all-claims" class="govuk-link">Cancel and return to claim information</a>
+        {% else %}
+            <br>
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/dashboard/new-dashboard/claimant/all-claims" class="govuk-link">Cancel and return to claim information</a>
+        {% endif %}
 
       </form>
     </div>

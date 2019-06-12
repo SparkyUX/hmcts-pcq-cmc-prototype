@@ -15,7 +15,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-         <form action="/reduced-questions-yes-or-no" method="post" novalidate>
+         <form action="/claimant-reduced-qs-yes-or-no" method="post" novalidate>
 
       <p>
         This will not affect your claim
@@ -27,20 +27,27 @@
             legend: {
               text: "Can we ask you a few questions about yourself? (Optional)",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
             {
               value: "Yes",
-              text: "yes"
+              text: "Yes"
             },
             {
               value: "No",
-              text: "no"
+              text: "No"
             }
           ]
          }) }}
+
+         {{ govukDetails({
+        summaryText: "How this information will be used",
+        html: "
+          <p>Like all public bodies we need to show that we treat everyone fairly. Please help us to do this and meet our commitment to equality (under the Equalities Act 2010) by answering a few questions about yourself.</p>"
+
+      }) }}
 
 
      {{ govukButton({

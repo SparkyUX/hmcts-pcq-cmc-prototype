@@ -3,12 +3,11 @@
 {% from "back-link/macro.njk" import govukBackLink %}
 {% from "radios/macro.njk" import govukRadios %}
 {% from "button/macro.njk" import govukButton %}
-{% from "textarea/macro.njk" import govukTextarea %}
 
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "disability.html"
+    href: "/pregnancy.html"
   }) }}
 {% endblock %}
 
@@ -16,61 +15,43 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form action="/form-handler" method="post" novalidate>
-
         {% set otherOtherHtml %}
-        {{ govukTextarea({
-          id: "religion-other",
-          name: "religion-other",
+        {{ govukInput({
+          id: "sexual-orientation-other",
+          name: "sexual-orientation-other",
           classes: "govuk-!-width-two-thirds",
           label: {
-            text: "Please describe your religion"
+            text: "Please enter how you think of yourself"
           }
         }) }}
         {% endset -%}
 
-
         {{ govukRadios({
-          idPrefix: "religion-or-belief",
-          name: "religion-or-belief",
+          idPrefix: "what-is-your-sexual-orientation",
+          name: "what-is-your-sexual-orientation",
           fieldset: {
             legend: {
-              text: "What is your religion?",
+              text: "Which of the following best describes how you think of yourself?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
             {
-              value: "no-religion",
-              text: "No religion"
+              value: "heterosexual-straight",
+              text: "Heterosexual or straight"
             },
             {
-              value: "christian",
-              text: "Christian (all denominations)"
+              value: "gay-lesbian",
+              text: "Gay or Lesbian"
             },
             {
-              value: "buddhist",
-              text: "Buddist"
-            },
-            {
-              value: "hindu",
-              text: "Hindu"
-            },
-            {
-              value: "jewish",
-              text: "Jewish"
-            },
-            {
-              value: "muslim",
-              text: "Muslim"
-            },
-            {
-              value: "sikh",
-              text: "Sikh"
+              value: "bisexual",
+              text: "Bisexual"
             },
             {
               value: "other",
-              text: "Any other religion",
+              text: "Other",
                 conditional: {
                 html: otherOtherHtml
                }
@@ -83,14 +64,14 @@
               text: "Prefer not to say"
             }
           ]
-        }) }} 
+        }) }}
 
         {{ govukButton({
           text: "Continue",
-          href: "ethnicity.html"
+          href: "marriage-or-civil-partnership.html"
         }) }}
          <br>
-        <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list" class="govuk-link">Cancel and return to claim information</a>
+        <a href="blank-page" class="govuk-link">Cancel and return to claim information</a>
 
       </form>
     </div>

@@ -1,9 +1,5 @@
 {% extends "layout.html" %}
 
-{% block pageTitle %}
-  Money Claims Prototype
-{% endblock %}
-
 {% from "back-link/macro.njk" import govukBackLink %}
 {% from "radios/macro.njk" import govukRadios %}
 {% from "button/macro.njk" import govukButton %}
@@ -11,52 +7,50 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/gender.html"
+    href: "income.html"
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/disability-answer-remainder" method="post" novalidate>
+      <form action="/form-handler" method="post" novalidate>
 
         {{ govukRadios({
-          idPrefix: "disability",
-          name: "disability-information",
+          idPrefix: "income",
+          name: "income",
           fieldset: {
             legend: {
-              text: "Do you have any physical or mental health conditions or illnesses lasting or expected to last 12 months or more?",
+              text: "Do you have any qualifications for which you received a certificate?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
             {
-              value: "Yes",
-              
+              value: "yes",
               text: "Yes"
             },
             {
-              value: "No",
-              
+              value: "no",
               text: "No"
             },
             {
               divider: "or"
             },
-           {
-              value: "Prefer not to say",
-            
+            {
+              value: "prefer-not-to-say",
               text: "Prefer not to say"
             }
           ]
         }) }}
 
         {{ govukButton({
-          text: "Continue"
+          text: "Continue",
+          href: "/english-as-first-language.html"
         }) }}
          <br>
-        <a href="/index.html" class="govuk-link">Cancel and return to claim information</a>
+        <a href="/blank.html" class="govuk-link">Cancel and return to claim information</a>
 
       </form>
     </div>
