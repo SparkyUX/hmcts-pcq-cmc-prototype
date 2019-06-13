@@ -35,22 +35,11 @@ router.post('/disability-answer-full', function (req, res) {
   if (disabilityInformation == 'Yes') {
     res.redirect('/disability/disability-yes')
   } else {
-    res.redirect('/religion-or-belief')
+    res.redirect('/religion')
   }
 
 })
 
-router.post('/disability-answer-remainder', function (req, res) {
-
-  let disabilityInformation = req.session.data['disability-information']
-
-  if (disabilityInformation == 'Yes') {
-    res.redirect('/task-list-remainder/disability/disability-yes')
-  } else {
-    res.redirect('/task-list-remainder/religion-or-belief')
-  }
-
-})
 router.post('/disability-details-full', function (req, res) {
 
   let disabilityYes = req.session.data['disability-yes']
@@ -59,19 +48,7 @@ router.post('/disability-details-full', function (req, res) {
     res.redirect('/disability/disability-yes-detail')
   }
   else {
-    res.redirect('/religion-or-belief')
-  }
-
-})
-router.post('/disability-details-remainder', function (req, res) {
-
-  let disabilityYes = req.session.data['disability-yes']
-
-  if (disabilityYes == 'Yes, limited a little' || disabilityYes == 'Yes, limited a lot') {
-    res.redirect('/task-list-remainder/disability/disability-yes-detail')
-  }
-  else {
-    res.redirect('/task-list-remainder/religion-or-belief')
+    res.redirect('/religion')
   }
 
 })
