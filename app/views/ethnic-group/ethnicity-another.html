@@ -18,7 +18,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="/summary" method="post">
+
+      {% if data['defendant'] == 'true' %} 
+        <form action="/pregnancy?defendant=true&" method="post" novalidate>  
+      {% else %}
+        <form action="/pregnancy?defendant=false&" method="post" novalidate>
+      {% endif %}  
+
       {% from "input/macro.njk" import govukInput %}
       {% from "fieldset/macro.njk" import govukFieldset %}
       {% from "radios/macro.njk" import govukRadios %}
@@ -64,23 +70,21 @@
         ]
       }) }}
       
-        {% if data['defendant'] == 'true' %} 
+       
+       
             <br>
+            
             {{ govukButton({
-              text: "Continue",
-              href: "https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list"
+              text: "Continue"
             }) }}
+
             <br>
+        {% if data['defendant'] == 'true' %} 
             <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list" class="govuk-link">Cancel and return to claim information</a>
         {% else %}
-            <br>
-            {{ govukButton({
-              text: "Continue",
-              href: "https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list"
-            }) }}
-            <br>
             <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list" class="govuk-link">Cancel and return to claim information</a>
         {% endif %}
+
 
 
       </form>

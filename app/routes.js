@@ -27,53 +27,96 @@ router.post('/defendant-reduced-qs-yes-or-no', function (req, res) {
   }
 
 })
-
-router.post('/disability-answer-full', function (req, res) {
+router.post('/claimant-disability-answer-full', function (req, res) {
 
   let disabilityInformation = req.session.data['disability-information']
 
   if (disabilityInformation == 'Yes') {
-    res.redirect('/disability/disability-yes')
+    res.redirect('/disability/disability-yes?defendant=false&')
   } else {
-    res.redirect('/religion')
+    res.redirect('/religion?defendant=false&')
+  }
+
+})
+router.post('/defendant-disability-answer-full', function (req, res) {
+
+  let disabilityInformation = req.session.data['disability-information']
+
+  if (disabilityInformation == 'Yes') {
+    res.redirect('/disability/disability-yes?defendant=true&')
+  } else {
+    res.redirect('/religion?defendant=true&')
   }
 
 })
 
-router.post('/disability-details-full', function (req, res) {
+router.post('/claimant-disability-details-full', function (req, res) {
 
   let disabilityYes = req.session.data['disability-yes']
 
   if (disabilityYes == 'Yes, limited a little' || disabilityYes == 'Yes, limited a lot') {
-    res.redirect('/disability/disability-yes-detail')
+    res.redirect('/disability/disability-yes-detail?defendant=false&')
   }
   else {
-    res.redirect('/religion')
+    res.redirect('/religion?defendant=false&')
   }
 
 })
 
-router.post('/ethnicity-answer', function (req, res) {
+router.post('/defendant-disability-details-full', function (req, res) {
+
+  let disabilityYes = req.session.data['disability-yes']
+
+  if (disabilityYes == 'Yes, limited a little' || disabilityYes == 'Yes, limited a lot') {
+    res.redirect('/disability/disability-yes-detail?defendant=true&')
+  }
+  else {
+    res.redirect('/religion?defendant=true&')
+  }
+
+})
+
+router.post('/defendant-ethnicity-answer', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
   if (ethnicGroup == "Prefer not to say") {
-    res.redirect('pregnancy')
+    res.redirect('pregnancy?defendant=true&')
   } else if (ethnicGroup == "White") {
-    res.redirect('ethnic-group/ethnicity-white')
+    res.redirect('ethnic-group/ethnicity-white?defendant=true&')
   } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
-    res.redirect('ethnic-group/ethnicity-mixed')
+    res.redirect('ethnic-group/ethnicity-mixed?defendant=true&')
   } else if (ethnicGroup == "Asian or Asian British") {
-    res.redirect('ethnic-group/ethnicity-asian')
+    res.redirect('ethnic-group/ethnicity-asian?defendant=true&')
   } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
-    res.redirect('ethnic-group/ethnicity-black')
+    res.redirect('ethnic-group/ethnicity-black?defendant=true&')
   } else if (ethnicGroup == "Another ethnic group") {
-    res.redirect('ethnic-group/ethnicity-another')
+    res.redirect('ethnic-group/ethnicity-another?defendant=true&')
   } else {
-    res.redirect('pregnancy.html')
+    res.redirect('pregnancy?defendant=true&')
   }
 
 })
 
+router.post('/claimant-ethnicity-answer', function (req, res) {
+  let ethnicGroup = req.session.data['ethnic-group']
+
+  if (ethnicGroup == "Prefer not to say") {
+    res.redirect('pregnancy?defendant=false&')
+  } else if (ethnicGroup == "White") {
+    res.redirect('ethnic-group/ethnicity-white?defendant=false&')
+  } else if (ethnicGroup == "Mixed or multiple ethnic groups") {
+    res.redirect('ethnic-group/ethnicity-mixed?defendant=false&')
+  } else if (ethnicGroup == "Asian or Asian British") {
+    res.redirect('ethnic-group/ethnicity-asian?defendant=false&')
+  } else if (ethnicGroup == "Black, African, Black British or Caribbean") {
+    res.redirect('ethnic-group/ethnicity-black?defendant=false&')
+  } else if (ethnicGroup == "Another ethnic group") {
+    res.redirect('ethnic-group/ethnicity-another?defendant=false&')
+  } else {
+    res.redirect('pregnancy?defendant=false&')
+  }
+
+})
 router.post('/ethnicity-answer-reduced-defendant', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 

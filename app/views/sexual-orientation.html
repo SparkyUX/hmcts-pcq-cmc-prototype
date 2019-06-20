@@ -14,7 +14,11 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/form-handler" method="post" novalidate>
+      {% if data['defendant'] == 'true' %} 
+        <form action="/marriage-or-civil-partnership?defendant=true&" method="post" novalidate>  
+      {% else %}
+        <form action="/marriage-or-civil-partnership?defendant=false&" method="post" novalidate>
+      {% endif %}
         {% set otherOtherHtml %}
         {{ govukInput({
           id: "sexual-orientation-other",
@@ -66,12 +70,19 @@
           ]
         }) }}
 
-        {{ govukButton({
-          text: "Continue",
-          href: "marriage-or-civil-partnership.html"
-        }) }}
-         <br>
-        <a href="blank-page" class="govuk-link">Cancel and return to claim information</a>
+            <br>
+            
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+
+            <br>
+        {% if data['defendant'] == 'true' %} 
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list" class="govuk-link">Cancel and return to claim information</a>
+        {% else %}
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list" class="govuk-link">Cancel and return to claim information</a>
+        {% endif %}
+
 
       </form>
     </div>
