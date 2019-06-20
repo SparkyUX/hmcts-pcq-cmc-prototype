@@ -58,11 +58,13 @@
           text: "Continue",
           href: "sexual-orientation.html"
         }) }}
+
+        <br> 
+
       {% if data['defendant'] == 'true' %} 
             <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list" class="govuk-link">Cancel and return to claim information</a>
         {% else %}
     
-            <br>
             <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list" class="govuk-link">Cancel and return to claim information</a>
         {% endif %}
       </form>
