@@ -1,0 +1,56 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Money Claims Prototype
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        CMC Protected Characteristics</h1>
+
+      <h1 class="govuk-heading-l">Protected characterisitics question pages</h1>
+
+      <h2 class="govuk-heading-m">Entry pages for the three options</h2>
+      <p>The entry pages are taken from the Civil Money Claims prototype and have been changed to work on this prototype. They may not be exactly the same as the live versions of the pages.
+      </p>
+      <h3 class="govuk-heading-s">Claimant journeys</h3>  
+      <ul class="govuk-list govuk-list--bullet">
+
+        <li><p> Claimant Option 1 - from your details in the task list. The last question is phone number. <a href="/claimant-task-list/phone.html">Your details - phone number</a></p></li>
+        <li><p> Claimant Option 2 - after the claim confirmation screen. <a href="/claimant-confirmation/confirmation-page.html">Claim confirmation screen</a></p></li>
+        <li><p> Claimant Option 3 - in the claim section. <a href="/claimant-claim/claim-details.html">Claim details</a></p></li>
+      </ul>
+
+        <h3 class="govuk-heading-s">Defendant journeys</h3> 
+
+      <ul class="govuk-list govuk-list--bullet">
+
+        <li><p> Respondant Option 1 - from your details in the task list. The last question is date of birth <a href="/defendant-task-list/date-of-birth.html">Your details - date of birth</a></p></li>
+        <li><p> Respondant Option 2 - after the claim confirmation screen. <a href="/claimant-task-list/phone.html">Claim confirmation screen</a></p></li>
+        <li><p> Respondant Option 3 - in the claim section. <a href="/respondant-claim/claim-details.html">Claim details</a></p></li>
+        </ul>
+
+        <h2 class="govuk-heading-m">Individual Question Pages</h2>
+
+        <ul class="govuk-list govuk-list--bullet">
+
+        <li><a href="introduction.html">Introduction page from task list</a></li>
+        <li><a href="age.html">Age Question</a></li>
+        <li><a href="sex.html">Sex Question</a></li>
+        <li><a href="gender.html">Gender Question</a></li>
+        <li><a href="disability.html">Disability Question</a></li>
+        <li><a href="religion-or-belief.html">Religion or Belief Question</a></li>
+        <li><a href="ethnicity.html">Ethnicity Question</a></li>
+        <li><a href="pregnancy">Pregnancy Question</a></li>
+        <li><a href="sexual-orientation.html">Sexual Orientation Question</a></li>
+        <li><a href="marriage-or-civil-partnership">Marriage or civil partnership</a></li>
+        <li><a href="confirm.html">Confirm answers</a></li>
+      </ul>
+    </div>
+</div>
+
+{% endblock %}

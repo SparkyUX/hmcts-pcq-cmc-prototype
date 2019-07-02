@@ -13,10 +13,10 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% if data['defendant'] == 'true' %} 
-        <form action="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list" method="post" novalidate>  
+     {% if data['defendant'] == 'true' %} 
+        <form action="/income?defendant=true" method="post" novalidate>  
       {% else %}
-        <form action="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list" method="post" novalidate>
+        <form action="/income?defendant=false" method="post" novalidate>
       {% endif %}
 
         {{ govukRadios({

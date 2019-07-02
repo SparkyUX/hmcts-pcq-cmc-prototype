@@ -1,0 +1,95 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Money Claims Prototype
+{% endblock %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/summary" method="post">
+        {% from "radios/macro.njk" import govukRadios %}
+        {% from "input/macro.njk" import govukInput %}
+
+        {% set mixedOtherHtml %}
+          {{ govukInput({
+            id: "ethnicity-white-other",
+            name: "ethnicity-white-other",
+            classes: "govuk-!-width-two-thirds",
+            label: {
+              text: "Your Mixed background (optional)"
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          idPrefix: "ethnic-group",
+          name: "ethnic-group",
+          fieldset: {
+            legend: {
+              text: "Which one best describes your Mixed or Multiple ethnic groups background?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              text: "Asian and White"
+            },
+            {
+              text: "Black African and White"
+            },    
+            {
+              text: "Black Caribbean and White"
+            },
+            {
+              text: "Another Mixed background",
+              conditional: {
+                html: mixedOtherHtml
+              }
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
+        {% if data['defendant'] == 'true' %} 
+            <br>
+            {{ govukButton({
+              text: "Continue",
+              href: "https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list"
+            }) }}
+            <br>
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list" class="govuk-link">Cancel and return to claim information</a>
+        {% else %}
+            <br>
+            {{ govukButton({
+              text: "Continue",
+              href: "https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list"
+            }) }}
+            <br>
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list" class="govuk-link">Cancel and return to claim information</a>
+        {% endif %}
+
+      </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -9,8 +9,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back",
-    href: "english-as-first-language.html"
+    text: "Back"
   }) }}
 {% endblock %}
 
@@ -18,25 +17,54 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">
-        Submit Your Answers
+
+      {% if data['tasklist'] == 'true' %}
+   
+        {% if data['defendant'] == 'true' %} 
+          <form action="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list?confirm_details=complete&" method="post" novalidate>  
+        {% else %}
+          <form action="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list?your_details=complete&" method="post" novalidate>
+        {% endif %}
+        
+      {% else %}
+
+        {% if data['defendant'] == 'true' %} 
+          <form action="thank-you?defendant=true" method="post" novalidate>  
+        {% else %}
+          <form action="thank-you?defendant=false" method="post" novalidate>
+        {% endif %}
+
+      {% endif %}
+
+
+     <h1 class="govuk-heading-l">
+        Additional questions completed
       </h1>
-      <p>
-        By submitting your answers, you're agreeing that we can collect and process this information. We'll use it to help us meet our commitment to equality (under the Equality Act 2010).
-      </p>
+      <p>We'll use the information to assess our policies, ensure our services are accessible and that everyone who uses them is treated fairly.</p>
 
       <p>
         You can withdraw your consent or change your answers at any time, please read our <a href="https://www.moneyclaims.service.gov.uk/privacy-policy" target="_blank"> privacy policy</a> for more information.
       </p>
 
+       <h1 class="govuk-heading-m">Tell us if you need support</h1>
+
+      {% if data['defendant'] == 'true' %} 
+      
+        <p>The information you have just shared is not part of your response. If you would like guidance or support with any part of you response, including <a href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about/equality-and-diversity" class="govuk-link" target="_blank">getting information in a different format</a> call us on 0300 123 1142.</p>
+
+      {% else %}
+
+        <p>The information you have just shared is not part of your claim. If you would like guidance or support with any part of your claim, including <a href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about/equality-and-diversity" class="govuk-link" target=_blank">getting information in a different format</a> call us on 0300 123 1142.</p>
+
+      {% endif %}
+      
+      <br>
+      <br>
      {{ govukButton({
-        text: "Accept and send",
-        href: "/thank-you.html"
+        text: "Continue"
       }) }}
 
-      <p>
-        <a href="blank-page" class="govuk-link">Cancel and return to claim information</a>
-      </p>
+      </form>
     </div>
 </div>
 

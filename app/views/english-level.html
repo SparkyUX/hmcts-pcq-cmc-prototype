@@ -7,14 +7,17 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "english-as-first-language.html"
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/form-handler" method="post" novalidate>
+      {% if data['defendant'] == 'true' %} 
+        <form action="/religion?defendant=true" method="post" novalidate>  
+      {% else %}
+        <form action="/religion?defendant=false" method="post" novalidate>
+      {% endif %}
 
         {{ govukRadios({
           idPrefix: "english-level",
@@ -54,11 +57,17 @@
         }) }}
 
         {{ govukButton({
-          text: "Continue",
-          href: "/confirm.html"
+          text: "Continue"
+          
         }) }}
          <br>
-        <a href="/blank.html" class="govuk-link">Cancel and return to claim information</a>
+        
+         {% if data['defendant'] == 'true' %} 
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list?confirm_details=complete&" class="govuk-link">Cancel and return to response information</a>
+        {% else %}
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list?your_details=complete&" class="govuk-link">Cancel and return to claim information</a>
+        {% endif %}
+      
 
       </form>
     </div>

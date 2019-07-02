@@ -11,8 +11,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back",
-    href: "/confirm.html"
+    text: "Back"
   }) }}
 {% endblock %}
 
@@ -25,9 +24,16 @@
         titleText: "Thank you"
       }) }}
 
-      <p>
-        You can find a copy of your answers in your <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/dashboard/new-dashboard/claimant/all-claims.html">claim account</a>
-      </p>
+      {% if data['defendant'] == 'true' %} 
+        <p>
+          You can find a copy of your answers in your <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list">account</a>
+        </p>
+      {% else %}
+         <p>
+          You can find a copy of your answers in your <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list">account</a>
+          </p>
+      {% endif %}
+
       <h3 class="govuk-heading-m">
         What happens next
       </h3>
@@ -36,12 +42,21 @@
       </p>
       <br>
 
-     {{ govukButton({
-        text: "Go to your account",
-        href: "https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/dashboard/new-dashboard/claimant/all-claims"
-      }) }}
-      <p>
+        {% if data['defendant'] == 'true' %} 
+          {{ govukButton({
+            text: "Go to your account",
+            href: "https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list?confirm_details=complete"
+           }) }}
+         
+        {% else %}
+           {{ govukButton({
+            text: "Go to your account",
+            href: "https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list?your_details=complete"
+           }) }}
+         
+        {% endif %}
 
+      <br>
 
       {{ govukDetails({
         summaryText: "Contact us for help",

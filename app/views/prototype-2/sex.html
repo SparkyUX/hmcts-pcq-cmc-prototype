@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Money Claims Prototype
+{% endblock %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if data['defendant'] == 'true' %} 
+        <form action="/ethnicity?defendant=true&" method="post" novalidate>  
+      {% else %}
+        <form action="/ethnicity?defendant=false&" method="post" novalidate>
+      {% endif %}
+        {{ govukRadios({
+          idPrefix: "what-is-your-sex",
+          name: "what-is-your-sex",
+          fieldset: {
+            legend: {
+              text: "What is your sex?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "male",
+              text: "Male"
+            },
+            {
+              value: "female",
+              text: "Female"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
+          <br>            
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+
+
+           <br>
+        {% if data['defendant'] == 'true' %} 
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list" class="govuk-link">Cancel and return to claim information</a>
+        {% else %}
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list" class="govuk-link">Cancel and return to claim information</a>
+        {% endif %}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -6,15 +6,19 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back",
-    href: "education.html"
+    text: "Back"
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/english-first-language" method="post" novalidate>
+      {% if data['defendant'] == 'true' %} 
+        <form action="/defendant-english-first-language" method="post" novalidate>  
+      {% else %}
+        <form action="/claimant-english-first-language" method="post" novalidate>
+      {% endif %}
+
 
         {% set otherOtherHtml %}
         {{ govukInput({
@@ -61,8 +65,12 @@
         {{ govukButton({
           text: "Continue"
         }) }}
-         <br>
-        <a href="/blank.html" class="govuk-link">Cancel and return to claim information</a>
+        <br>
+         {% if data['defendant'] == 'true' %} 
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list?confirm_details=complete&" class="govuk-link">Cancel and return to response information</a>
+        {% else %}
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list?your_details=complete&" class="govuk-link">Cancel and return to claim information</a>
+        {% endif %}
 
       </form>
     </div>

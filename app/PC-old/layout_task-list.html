@@ -1,0 +1,83 @@
+{% extends "govuk_template.html" %}
+
+{% block head %}
+  {% include "includes/head.html" %}
+  {% block extra_css %}{% endblock %}
+{% endblock %}
+
+{% block cookie_message %}
+  <p>{{cookieText | safe }}</p>
+{% endblock %}
+
+{% block proposition_header %}
+<div class="header-proposition">
+  <div class="content">
+    <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
+    <nav id="proposition-menu">
+      <a href="{% block home_link %} {{ defaultHome }} {% endblock %}" id="proposition-name">
+        {# Set serviceName in config.js. Use a block to override on a page. #}
+        {% block service_name %}
+          {% if serviceName %} {{ serviceName }} {% endif %}
+        {% endblock %}
+      </a>
+      <ul id="proposition-links">
+        <!--<li><a href="url-to-page-1" class="active">Navigation item #1</a></li>-->
+        <li><a href="url-to-page-2" data-alert="This feature is not available in this demo">Sign out</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+{% endblock %}
+
+{% block header_class %}
+  with-proposition
+{% endblock %}
+
+{% block content %}
+<form class="form" action="/thanks-plain" method="get">
+  <details class="govuk-details" role="group">
+    <summary class="govuk-details__summary" role="button" aria-controls="details-content-a64d288c-7300-412e-a9d1-de80a3618499" aria-expanded="false">
+            <span class="govuk-details__summary-text">
+              Contact us for help
+            </span>
+    </summary>
+    <div class="govuk-details__text" id="details-content-a64d288c-7300-412e-a9d1-de80a3618499" aria-hidden="true">
+
+
+      <h2 class="govuk-heading-m" style="margin: 0px">Email</h2>
+      <p><a href="send-a-message" target="_blank"> Send us a message </a> (opens in a new page)
+        <br> We’ll get back to you within 2 days.</p>
+
+      <h2 class="govuk-heading-m" style="margin: 0px">Telephone</h2>
+      <p>0300 123 7050 <br>  (Monday to Friday, 9.00am to 5.00pm)</p>
+    </div>
+  </details>
+</form>
+{% endblock %}
+
+{% block footer_support_links %}
+  {% if useAutoStoreData %}
+<ul class="">
+    <li><a href="/dashboard/v4/idam/cookies?type=service_specific" data-sso="false" data-journey-click="footer:Click:Cookies">Cookies</a></li>
+    <li><a href="/dashboard/v4/idam/privacy?type=service_specific"  data-sso="false" data-journey-click="footer:Click:Privacy policy">Privacy policy</a></li>
+    <li><a href="/dashboard/v4/idam/terms-and-conditions?type=service_specific"  data-sso="false" data-journey-click="footer:Click:Terms and conditions">Terms and conditions</a></li>
+    <li><a href="/dashboard/v4/idam/contact-us?type=service_specific"  data-sso="false" data-journey-click="footer:Click:Terms and conditions">Contact us</a></li>
+
+</ul>
+<ul>
+  <li>
+    <a href="/prototype-admin/clear-data">Clear data</a>
+  </li>
+  <li>
+    <a href="/prototype-admin/view-data" target="_blank">View data</a>
+  </li>
+</ul>
+   {% endif %}
+ {% endblock %}
+
+{% block body_end %}
+{% include "includes/scripts.html" %}
+<!-- GOV.UK Prototype kit {{releaseVersion}} -->
+{% block extra_js_1 %}{% endblock %}
+{% block extra_js_2 %}{% endblock %}
+{% endblock %}

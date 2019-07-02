@@ -10,8 +10,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back",
-    href: "gender.html"
+    text: "Back"
   }) }}
 {% endblock %}
 
@@ -19,9 +18,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% if data['defendant'] == 'true' %} 
-        <form action="/defendant-disability-answer-full" method="post" novalidate>  
+        <form action="/defendant-disability-answer" method="post" novalidate>  
       {% else %}
-        <form action="/claimant-disability-answer-full" method="post" novalidate>
+        <form action="/claimant-disability-answer" method="post" novalidate>
       {% endif %}
 
         {{ govukRadios({

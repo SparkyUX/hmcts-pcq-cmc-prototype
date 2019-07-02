@@ -10,8 +10,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back",
-    href: "/sex.html"
+    text: "Back"
   }) }}
 {% endblock %}
 
@@ -19,9 +18,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
     {% if data['defendant'] == 'true' %} 
-        <form action="/disability?defendant=true&" method="post" novalidate>  
+        <form action="/marriage-or-civil-partnership?defendant=true" method="post" novalidate>  
       {% else %}
-        <form action="/disability?defendant=false&" method="post" novalidate>
+        <form action="/marriage-or-civil-partnership?defendant=false" method="post" novalidate>
       {% endif %}
         
         {% set otherOtherHtml %}
