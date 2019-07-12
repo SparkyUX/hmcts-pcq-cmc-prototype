@@ -6,8 +6,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back",
-    href: "/pregnancy.html"
+    text: "Back"
   }) }}
 {% endblock %}
 
@@ -15,9 +14,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% if data['defendant'] == 'true' %} 
-        <form action="/marriage-or-civil-partnership?defendant=true&" method="post" novalidate>  
+        <form action="/gender?defendant=true" method="post" novalidate>  
       {% else %}
-        <form action="/marriage-or-civil-partnership?defendant=false&" method="post" novalidate>
+        <form action="/gender?defendant=false" method="post" novalidate>
       {% endif %}
         {% set otherOtherHtml %}
         {{ govukInput({
@@ -77,12 +76,11 @@
             }) }}
 
             <br>
-        {% if data['defendant'] == 'true' %} 
-            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list" class="govuk-link">Cancel and return to claim information</a>
+         {% if data['defendant'] == 'true' %} 
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list?confirm_details=complete&" class="govuk-link">Cancel and return to response information</a>
         {% else %}
-            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list" class="govuk-link">Cancel and return to claim information</a>
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list?your_details=complete&" class="govuk-link">Cancel and return to claim information</a>
         {% endif %}
-
 
       </form>
     </div>

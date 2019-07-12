@@ -15,31 +15,35 @@
     <div class="govuk-grid-column-two-thirds">
       
       {% if data['defendant'] == 'true' %} 
-        <form action="/sex?defendant=true&" method="post" novalidate>  
+        <form action="/english-as-first-language?defendant=true&" method="post" novalidate>  
       {% else %}
-        <form action="/sex?defendant=false&" method="post" novalidate>
+        <form action="/english-as-first-language?defendant=false&" method="post" novalidate>
       {% endif %}
 
-      <h1 class="govuk-heading-l">
-       Equalities Questions</h1>
-        
-      <p>
-        Like all public bodies we need to show that we treat everyone fairly. Please help us to do this and meet our commitment to equality by answering a few questions about yourself.
-      </p>
+      <div class="govuk-panel govuk-panel--confirmation" style="background:#005ea5">
+        <h1 class="govuk-panel__title">
+          Equality questions
+        </h1>
+      </div>
+      <br>
+        <p>We’d like to ask you a few questions about yourself to help us check that we’re treating people equally and fairly.</p>
+        <p>You do not have to answer them.</p>
 
-      <p>
-        Your answers are confidential, they will not affect your case.
-      </p>
-
-       {{ govukButton({
+        {% if data['defendant'] == 'true' %} 
+          <p>Your answers are confidential, they are not part of your response and won’t affect your case.</p>
+        {% else %}
+          <p>Your answers are confidential, they are not part of your claim and won’t affect your case.</p>
+        {% endif %}
+        <br>
+        {{ govukButton({
             text: "Continue"
             }) }}
             <br>
 
         {% if data['defendant'] == 'true' %} 
-            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list" class="govuk-link">Cancel and return to claim information</a>
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list?confirm_details=complete&" class="govuk-link">Cancel and return to response information</a>
         {% else %}
-            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list" class="govuk-link">Cancel and return to claim information</a>
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list?your_details=complete&" class="govuk-link">Cancel and return to claim information</a>
         {% endif %}
       </form>
     </div>

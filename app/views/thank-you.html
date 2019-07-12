@@ -11,8 +11,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back",
-    href: "/confirm.html"
+    text: "Back"
   }) }}
 {% endblock %}
 
@@ -20,28 +19,39 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+            <div class="govuk-panel govuk-panel--confirmation" style="background:#005ea5">
+        <h1 class="govuk-panel__title">
+          Answers submitted
+        </h1>
+      </div>
+  
+      <br>
+      <p class="govuk-heading-m">Thank you</p>
       
-      {{ govukPanel({
-        titleText: "Thank you"
-      }) }}
+      {% if data['defendant'] == 'true' %} 
+       
+        <p>If you need help with any part of your response or you need <a href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about/equality-and-diversity" class="govuk-link" target="_blank">information in a different format</a> contact us.</p>
+      {% else %}
+        <p>If you need help with any part of your claim or you need <a href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about/equality-and-diversity" class="govuk-link" target="_blank">information in a different format</a> contact us.</p>
+      {% endif %}
 
-      <p>
-        You can find a copy of your answers in your <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/dashboard/new-dashboard/claimant/all-claims.html">claim account</a>
-      </p>
-      <h3 class="govuk-heading-m">
-        What happens next
-      </h3>
-      <p>
-        Anything you have told us about yourself will not affect how we handle your case. If you think you may need additional support, assistance or a <a href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about/equality-and-diversity" class="govuk-link">reasonable adjustment</a> please contact us to find out how we can help.
-      </p>
       <br>
 
-     {{ govukButton({
-        text: "Go to your account",
-        href: "https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/dashboard/new-dashboard/claimant/all-claims"
-      }) }}
-      <p>
+        {% if data['defendant'] == 'true' %} 
+          {{ govukButton({
+            text: "Go to your account",
+            href: "https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/dashboard/defendant?defendant=31"
+           }) }}
+         
+        {% else %}
+           {{ govukButton({
+            text: "Go to your account",
+            href: "https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/dashboard/claimant?claimant=1"
+           }) }}
+         
+        {% endif %}
 
+      <br>
 
       {{ govukDetails({
         summaryText: "Contact us for help",

@@ -9,8 +9,7 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back",
-    href: "english-as-first-language.html"
+    text: "Back"
   }) }}
 {% endblock %}
 
@@ -18,25 +17,40 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">
-        Submit Your Answers
-      </h1>
-      <p>
-        By submitting your answers, you're agreeing that we can collect and process this information. We'll use it to help us meet our commitment to equality (under the Equality Act 2010).
-      </p>
 
-      <p>
-        You can withdraw your consent or change your answers at any time, please read our <a href="https://www.moneyclaims.service.gov.uk/privacy-policy" target="_blank"> privacy policy</a> for more information.
-      </p>
+      {% if data['tasklist'] == 'true' %}
+   
+        {% if data['defendant'] == 'true' %} 
+          <form action="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list?confirm_details=complete&" method="post" novalidate>  
+        {% else %}
+          <form action="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list?your_details=complete&" method="post" novalidate>
+        {% endif %}
+        
+      {% else %}
 
+        {% if data['defendant'] == 'true' %} 
+          <form action="thank-you?defendant=true" method="post" novalidate>  
+        {% else %}
+          <form action="thank-you?defendant=false" method="post" novalidate>
+        {% endif %}
+
+      {% endif %}
+
+
+     <h1 class="govuk-heading-l">Submit your answers</h1>
+
+      <p>When you submit your answers, you agree that we can collect and process this information. We’ll use it to help us meet our commitment to equality (under the Equality Act 2010).</p>
+      <p>You can withdraw your consent or change your answers at any time.</p>
+      <p>Read our <a href="https://www.moneyclaims.service.gov.uk/privacy-policy" target="_blank"> privacy policy</a> for more information.
+      </p>    
+      
+      <br>
+      <br>
      {{ govukButton({
-        text: "Accept and send",
-        href: "/thank-you.html"
+        text: "Agree and Submit"
       }) }}
 
-      <p>
-        <a href="blank-page" class="govuk-link">Cancel and return to claim information</a>
-      </p>
+      </form>
     </div>
 </div>
 
