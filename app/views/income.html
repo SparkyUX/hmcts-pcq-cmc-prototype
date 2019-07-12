@@ -6,19 +6,15 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back"
+    text: "Back",
+    href: "marriage-or-civil-partnership.html"
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      {% if data['defendant'] == 'true' %} 
-        <form action="/education?defendant=true&" method="post" novalidate>  
-      {% else %}
-        <form action="/education?defendant=false&" method="post" novalidate>
-      {% endif %}
+      <form action="/form-handler" method="post" novalidate>
 
         {{ govukRadios({
           idPrefix: "income",
@@ -82,14 +78,12 @@
         }) }}
 
         {{ govukButton({
-          text: "Continue"
+          text: "Continue",
+          href: "/education.html"
         }) }}
          <br>
-         {% if data['defendant'] == 'true' %} 
-            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list?confirm_details=complete&" class="govuk-link">Cancel and return to response information</a>
-        {% else %}
-            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list?your_details=complete&" class="govuk-link">Cancel and return to claim information</a>
-        {% endif %}
+        <a href="/blank.html" class="govuk-link">Cancel and return to claim information</a>
+
       </form>
     </div>
   </div>

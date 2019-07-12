@@ -21,9 +21,9 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% if data['defendant'] == 'true' %} 
-        <form action="/confirm?defendant=true&tasklist=true" method="post" novalidate>  
+        <form action="/pregnancy?defendant=true&" method="post" novalidate>  
       {% else %}
-        <form action="/confirm?defendant=false&tasklist=true" method="post" novalidate>
+        <form action="/pregnancy?defendant=false&" method="post" novalidate>
       {% endif %}      
       {% from "radios/macro.njk" import govukRadios %}
       {% from "input/macro.njk" import govukInput %}
@@ -79,10 +79,10 @@
             }) }}
 
             <br>
-       {% if data['defendant'] == 'true' %} 
-            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list?confirm_details=complete&" class="govuk-link">Cancel and return to response information</a>
+        {% if data['defendant'] == 'true' %} 
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list" class="govuk-link">Cancel and return to claim information</a>
         {% else %}
-            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list?your_details=complete&" class="govuk-link">Cancel and return to claim information</a>
+            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list" class="govuk-link">Cancel and return to claim information</a>
         {% endif %}
 
 
