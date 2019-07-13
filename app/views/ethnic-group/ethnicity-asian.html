@@ -27,6 +27,7 @@
         <form action="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list?your_details=complete&" method="post" novalidate>
       {% endif %}  
 
+
       {% from "radios/macro.njk" import govukRadios %}
       {% from "input/macro.njk" import govukInput %}
 
@@ -39,7 +40,7 @@
             text: "Your Asian background (optional)"
           }
         }) }}
-      {% endset -%}
+      {% endset %}
 
       {{ govukRadios({
         idPrefix: "ethnic-group",
@@ -79,18 +80,18 @@
             }
         ]
         }) }}
-  
+
             <br>
-            
             {{ govukButton({
               text: "Continue"
             }) }}
-
             <br>
+
       {% if data['defendant'] == 'true' %} 
             <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list?confirm_details=complete&" class="govuk-link">Cancel and return to response information</a>
         {% else %}
             <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list?your_details=complete&" class="govuk-link">Cancel and return to claim information</a>
+
         {% endif %}
 
       </form>

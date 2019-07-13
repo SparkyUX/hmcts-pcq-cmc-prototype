@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Money Claims Prototype
+{% endblock %}
+
+{% block content %} {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "tabs/macro.njk" import govukTabs %}
+{% from "table/macro.njk" import govukTable %}
+
+<main id="content" role="main">
+
+    {{ govukBreadcrumbs({
+    items: [
+    {
+      text: "All claims"
+    },
+    {
+      text: "Claim details"
+    }
+  ]
+}) }}
+    <br>
+    <div class="details" style="margin-top: -30px">
+        <span style=""><h2 style="">
+          <h2 class="govuk-heading-m">Jan Clark v Mary Richards</h2>
+          <p style="margin-top: -10px">Claim number: <span style="">352MC733</span>
+          </p>
+    <!--<div class="divider"></div>-->
+
+    <div class="column-full-width">
+
+
+{% set nextStepsHtml %}
+<div class="govuk-width-container">
+
+  <main class="govuk-main-wrapper">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h2 class="govuk-heading-l">Next steps</h2>
+        <h3 class="govuk-heading-s">Waiting for the defendant to respond</h3>
+              <p class="govuk-body">Mary Richards has until before 4pm on 24 December 2018 to respond. They can request an extra 14 days if
+                they need it.</p>
+
+              <p class="govuk-body">You can request a default County Court Judgment (CCJ) against them if they don't respond by the
+                deadline.</p>
+
+              {% include 'contact.html' %}
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+        <h3 class="govuk-heading-s">More actions</h3>
+         <p></p><a href="">Tell us you've settled</a></p>
+         <p></p><a href="">Stopping the claim</a></p>
+      
+      </div>
+    </div>
+
+  </main>
+</div>
+
+{% endset -%}
+
+
+{% set claimHistoryHtml %}
+<h2 class="govuk-heading-l">Claim history</h2>
+<div class="hmcts-timeline" style="margin-top: 50px">
+            <div class="hmcts-timeline__item">
+              <div class="hmcts-timeline__header">
+                <h2 class="hmcts-timeline__title">You submitted your claim</h2>
+                <!--<p class="hmcts-timeline__by">by you (claimant)</p>-->
+                <p><a href="../../../defendant/correspondence/forms/claim-form-claimant?check=1">Download claim</a>
+                  (PDF, 123KB)</p>
+              </div>
+              <p class="hmcts-timeline__date" style="margin-top: -10px">
+                <time style="color: grey">6 December 2018</time>
+              </p>
+            </div>
+          </div>
+  
+{% endset -%}
+
+
+{{ govukTabs({
+  items: [
+    {
+      label: "Next steps",
+      id: "next-steps",
+      panel: {
+        html: nextStepsHtml
+      }
+    },
+    {
+      label: "Claim history",
+      id: "claim-history",
+      panel: {
+        html: claimHistoryHtml
+      }
+    }
+  ]
+}) }}
+
+</main>
+
+
+{% endblock %}

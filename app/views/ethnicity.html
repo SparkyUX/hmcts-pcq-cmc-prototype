@@ -18,85 +18,87 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% if data['defendant'] == 'true' %} 
+
         <form action="/defendant-ethnicity-answer-reduced" method="post" novalidate>
       {% else %}
         <form action="/claimant-ethnicity-answer-reduced" method="post" novalidate>
+
       {% endif %}
 
-        {{ govukRadios({
-          idPrefix: "ethnic-group",
-          name: "ethnic-group",
-          fieldset: {
-            legend: {
-              text: "What is your ethnic group?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          items: [
-            {
-              value: "Asian or Asian British",
-              text: "Asian or Asian British",
-              label: {
-                classes: 'govuk-label--s'
-              },
-              hint: {
-                text: 'Includes any Asian background, for example, Bangladeshi, Chinese, Indian, Pakistani.'
-              }
-            },
-            {
-              value: "Black, African, Black British or Caribbean",
-              text: "Black, African, Black British or Caribbean",
-              label: {
-                classes: 'govuk-label--s'
-              },
-              hint: {
-                text: 'Includes any Black background'
-              }
-            },
-             {
-              value: "Mixed or multiple ethnic groups",
-              text: "Mixed or multiple ethnic groups",
-              label: {
-                classes: 'govuk-label--s'
-              },
-              hint: {
-                text: 'Includes any Mixed background'
-              }
-            },
-            {
-              value: "White",
-              text: "White",
-              label: {
-                classes: 'govuk-label--s'
-              },
-              hint: {
-                text: 'Includes any White background'
-              }
-            },
-            {
-              value: "Another ethnic group",
-              text: "Another ethnic group",
-              label: {
-                classes: 'govuk-label--s'
-              },
-              hint: {
-                text: 'Includes any other ethnic group, for example, Arab'
-              }
-            },
-            {
-              divider: "or"
-            },
-            {
-              value: "Prefer not to say",
-              text: "Prefer not to say",
-              label: {
-                classes: 'govuk-label'
-              }
-            }
-          ]
-        }) }}
-          <br>
+{{ govukRadios({
+  idPrefix: "ethnic-group",
+  name: "ethnic-group",
+  fieldset: {
+    legend: {
+      text: "What is your ethnic group?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "Asian or Asian British",
+      text: "Asian or Asian British",
+      label: {
+        classes: 'govuk-label--s'
+      },
+      hint: {
+        text: 'Includes any Asian background, for example, Bangladeshi, Chinese, Indian, Pakistani.'
+      }
+    },
+    {
+      value: "Black, African, Black British or Caribbean",
+      text: "Black, African, Black British or Caribbean",
+      label: {
+        classes: 'govuk-label--s'
+      },
+      hint: {
+        text: 'Includes any Black background'
+      }
+    },
+     {
+      value: "Mixed or multiple ethnic groups",
+      text: "Mixed or multiple ethnic groups",
+      label: {
+        classes: 'govuk-label--s'
+      },
+      hint: {
+        text: 'Includes any Mixed background'
+      }
+    },
+    {
+      value: "White",
+      text: "White",
+      label: {
+        classes: 'govuk-label--s'
+      },
+      hint: {
+        text: 'Includes any White background'
+      }
+    },
+    {
+      value: "Another ethnic group",
+      text: "Another ethnic group",
+      label: {
+        classes: 'govuk-label--s'
+      },
+      hint: {
+        text: 'Includes any other ethnic group, for example, Arab'
+      }
+    },
+    {
+      divider: "or"
+    },
+    {
+      value: "Prefer not to say",
+      text: "Prefer not to say",
+      label: {
+        classes: 'govuk-label'
+      }
+    }
+  ]
+}) }}
+
         {{ govukButton({
 
           text: "Continue"

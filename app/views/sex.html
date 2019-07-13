@@ -17,11 +17,13 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
       {% if data['defendant'] == 'true' %} 
         <form action="/ethnicity?defendant=true&" method="post" novalidate>  
       {% else %}
         <form action="/ethnicity?defendant=false&" method="post" novalidate>
       {% endif %}
+
         {{ govukRadios({
           idPrefix: "what-is-your-sex",
           name: "what-is-your-sex",
@@ -50,13 +52,12 @@
             }
           ]
         }) }}
-          <br>            
-            {{ govukButton({
-              text: "Continue"
-            }) }}
 
-
-           <br>
+        {{ govukButton({
+           text: "Continue"
+        }) }}
+            <br>
+            
         {% if data['defendant'] == 'true' %} 
             <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list?confirm_details=complete&" class="govuk-link">Cancel and return to response information</a>
         {% else %}

@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Money Claims Prototype
+{% endblock %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+{% from "input/macro.njk" import govukInput %} 
+{% from "date-input/macro.njk" import govukDateInput %}
+
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "introduction.html"
+  }) }}
+{% endblock %}
+
+{% block content %}
+ <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/form-handler" method="post" novalidate>
+
+          {{ govukDateInput({
+            id: "dob",
+            namePrefix: "dob",
+            fieldset: {
+              legend: {
+                text: "What is your date of birth?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            hint: {
+              text: "For example, 31 3 1980"
+            },
+            items: [
+              {
+                name: "day",
+                classes: "govuk-input--width-2",
+                autocomplete: "bday-day"
+              },
+              {
+                name: "month",
+                classes: "govuk-input--width-2",
+                autocomplete: "bday-month"
+              },
+              {
+                name: "year",
+                classes: "govuk-input--width-2",
+                autocomplete: "bday-year"
+              }
+            ]
+          }) }}
+
+        <p>or</p>
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "prefer-not-to-say",
+          name: "prefer-not-to-say",
+          items: [
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        })
+        }}
+
+       {{ govukButton({
+          text: "Continue",
+          href: "sex.html"
+
+        }) }} 
+         <br>
+        <a href="/index.html" class="govuk-link">Cancel and return to claim information</a>
+
+        
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -13,11 +13,13 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-     {% if data['defendant'] == 'true' %} 
-        <form action="/sexual-orientation?defendant=true&" method="post" novalidate>  
+   
+      {% if data['defendant'] == 'true' %} 
+        <form action="/sexual-orientation?defendant=true" method="post" novalidate>  
       {% else %}
-        <form action="/sexual-orientation?defendant=false&" method="post" novalidate>
+        <form action="/sexual-orientation?defendant=false" method="post" novalidate>
       {% endif %}
+
 
         {{ govukRadios({
           idPrefix: "are-you-pregnant",
@@ -39,10 +41,6 @@
               text: "No"
             },
             {
-              value: "not-applicable",
-              text: "Not applicable"
-            },
-            {
               divider: "or"
             },
             {
@@ -52,8 +50,6 @@
           ]
         }) }}
 
-        <br>
-        
         {{ govukButton({
           text: "Continue"
         }) }}
@@ -65,6 +61,7 @@
         {% else %}
             <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list?your_details=complete&" class="govuk-link">Cancel and return to claim information</a>
         {% endif %}
+
       </form>
     </div>
   </div>

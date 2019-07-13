@@ -17,11 +17,13 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
       {% if data['defendant'] == 'true' %} 
         <form action="/defendant-disability-answer" method="post" novalidate>  
       {% else %}
         <form action="/claimant-disability-answer" method="post" novalidate>
       {% endif %}
+
 
         {{ govukRadios({
           idPrefix: "disability",
@@ -54,16 +56,18 @@
             }
           ]
         }) }}
-        <br>
+
         {{ govukButton({
           text: "Continue"
         }) }}
          <br>
+
         {% if data['defendant'] == 'true' %} 
             <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list?confirm_details=complete&" class="govuk-link">Cancel and return to response information</a>
         {% else %}
             <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list?your_details=complete&" class="govuk-link">Cancel and return to claim information</a>
         {% endif %}
+
 
       </form>
     </div>

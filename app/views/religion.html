@@ -14,6 +14,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
       {% if data['defendant'] == 'true' %} 
         <form action="/disability?defendant=true" method="post" novalidate>  
       {% else %}
@@ -90,8 +91,10 @@
         }) }} 
 
         {{ govukButton({
-          text: "Continue"
+          text: "Continue",
+          href: "pregnancy.html"
         }) }}
+
         <br>
 
           {% if data['defendant'] == 'true' %} 

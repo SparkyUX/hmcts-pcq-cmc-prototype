@@ -13,11 +13,13 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
      {% if data['defendant'] == 'true' %} 
         <form action="/income?defendant=true" method="post" novalidate>  
       {% else %}
         <form action="/income?defendant=false" method="post" novalidate>
       {% endif %}
+
 
         {{ govukRadios({
           idPrefix: "marriage-or-civil-partnership",
@@ -46,12 +48,12 @@
               text: "Prefer not to say"
             }
           ]
-        }) }} 
-          <br>            
-            {{ govukButton({
-              text: "Continue"
-            }) }}
+        }) }}
 
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+         <br>
 
            <br>
          {% if data['defendant'] == 'true' %} 
@@ -59,6 +61,8 @@
         {% else %}
             <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list?your_details=complete&" class="govuk-link">Cancel and return to claim information</a>
         {% endif %}
+
+   
 
       </form>
     </div>

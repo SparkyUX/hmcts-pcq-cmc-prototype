@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Money Claims Prototype
+{% endblock %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "../disability.html"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/disability-details" method="post" novalidate>
+
+        {{ govukRadios({
+          idPrefix: "disability-yes",
+          name: "disability-yes",
+          
+           fieldset: {
+            legend: {
+              text: "Do any of your conditions or illnesses reduce your ability to carry out day-to day activities?",
+              classes: "govuk-fieldset__legend--xl",
+              isPageHeading: true
+
+            }
+          },
+        
+        items: [
+            {
+              value: "Yes, limited a little",
+              text: "Yes, limited a little"
+            },
+            {
+              value: "Yes, limited a lot",
+              text: "Yes, limited a lot"
+            },
+            {
+              value: "Not at all",
+              text: "Not at all"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "Prefer not to say",
+              text: "Prefer not to say"
+            }
+          ]
+
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+         <br>
+        <a href="../index.html" class="govuk-link">Cancel and return to claim information</a>
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
