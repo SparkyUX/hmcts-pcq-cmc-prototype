@@ -91,16 +91,15 @@
         }) }} 
 
         {{ govukButton({
-          text: "Continue",
-          href: "pregnancy.html"
+          text: "Continue"
         }) }}
 
         <br>
 
           {% if data['defendant'] == 'true' %} 
-            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/defendant/task-list?confirm_details=complete&" class="govuk-link">Cancel and return to response information</a>
+            <a href="blank" class="govuk-link">Cancel and return to response information</a>
         {% else %}
-            <a href="https://cmc-prototype-pc.herokuapp.com/prototypes/prototype-may-2019/claimant/task-list?your_details=complete&" class="govuk-link">Cancel and return to claim information</a>
+            <a href="blank" class="govuk-link">Cancel and return to claim information</a>
         {% endif %}
 
       </form>
