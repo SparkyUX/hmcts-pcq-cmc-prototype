@@ -15,9 +15,9 @@
     <div class="govuk-grid-column-two-thirds">
    
       {% if data['defendant'] == 'true' %} 
-        <form action="/sexual-orientation?defendant=true" method="post" novalidate>  
+        <form action="/sexual-orientation?defendant=true&" method="post" novalidate>  
       {% else %}
-        <form action="/sexual-orientation?defendant=false" method="post" novalidate>
+        <form action="/sexual-orientation?defendant=false&" method="post" novalidate>
       {% endif %}
 
 

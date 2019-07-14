@@ -19,7 +19,7 @@
     <div class="govuk-grid-column-two-thirds">
 
     {% if data['defendant'] == 'true' %} 
-        <form action="/marriage-or-civil-partnership?defendant=true" method="post" novalidate>  
+        <form action="/marriage-or-civil-partnership?defendant=true&" method="post" novalidate>  
       {% else %}
         <form action="/marriage-or-civil-partnership?defendant=false" method="post" novalidate>
       {% endif %}

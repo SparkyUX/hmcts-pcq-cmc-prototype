@@ -15,9 +15,9 @@
     <div class="govuk-grid-column-two-thirds">
 
      {% if data['defendant'] == 'true' %} 
-        <form action="/income?defendant=true" method="post" novalidate>  
+        <form action="/income?defendant=true&" method="post" novalidate>  
       {% else %}
-        <form action="/income?defendant=false" method="post" novalidate>
+        <form action="/income?defendant=false&" method="post" novalidate>
       {% endif %}
 
 
