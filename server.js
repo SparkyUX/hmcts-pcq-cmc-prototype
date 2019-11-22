@@ -68,7 +68,6 @@ var gtmId = process.env.GOOGLE_TAG_MANAGER_TRACKING_ID
 
 var serviceReturnUrlA = process.env.SERVICE_RETURN_URL_A || config.serviceReturnUrlA
 var serviceReturnUrlB = process.env.SERVICE_RETURN_URL_B || config.serviceReturnUrlB
-var serviceUserAction = process.env.SERVICE_USER_ACTION || config.serviceUserAction
 var serviceUserTypeA = process.env.SERVICE_USER_TYPE_A || config.serviceUserTypeA
 var serviceUserTypeB = process.env.SERVICE_USER_TYPE_B || config.serviceUserTypeB
 
@@ -197,7 +196,6 @@ app.locals.serviceName = config.serviceName
 
 // JHS 091019 add variables for originating service
 app.locals.questionOrder = questionOrder
-app.locals.serviceUserAction = serviceUserAction
 app.locals.serviceUserTypeA = serviceUserTypeA
 app.locals.serviceUserTypeB = serviceUserTypeB
 app.locals.serviceReturnUrlA = serviceReturnUrlA

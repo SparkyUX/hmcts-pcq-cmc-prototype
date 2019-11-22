@@ -15,5 +15,5 @@ The SERVICE_USER_TYPE_A is used to define the type of user and which return url 
 
 If there are two user types then the user type is passed to the PCQs via a query string on the URL from the initiating service It is checked against the SERVICE_USER_TYPE_B, if they match then SERVICE_RETURN_URL_B is used as the return. This means that if no query string is passed (i.e. only one user type for this service) the return url defaults to SERVICE_RETURN_URL_A.
 
-The SERVICE_USER_ACTION is used to display the action of the user in the information panel on the introduction page e.g. application
-"Your answers won't affect your {{serviceUserAction}}." 
+The serviceUserAction is used to display the action of the user in the information panel on the introduction page e.g. application
+"Your answers won't affect your {{serviceUserAction}}."  This is determined (hard coded with a switch command) in the routes.js file
