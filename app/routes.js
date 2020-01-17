@@ -9,37 +9,36 @@ const app = express()
 //JHS 301019 get the usertype parameter from the url query string
 
 var urlQueryUserType
-// var serviceUserAction
-
 
 router.get('/introduction', function(req, res) {
-var userTypeQueryString = req.query.userType
+  // if the user tyope is passed as a string query use that otherwise use the env var
+  var userTypeInput = req.query.userType || req.app.locals.serviceUserTypeA
 
-// JHS 211109 set user action based on userType
+  // JHS 211109 set user action based on the user type passed in 
 
-  switch (userTypeQueryString) {
-      case 'applicant':
-        serviceUserAction = 'application'
-        break
-      case 'appellant':
-        serviceUserAction = 'appeal'        
-        break
-      case 'claimant':
-        serviceUserAction = 'application'
-        break
-      case 'respondent':
-        serviceUserAction = 'response'
-        break
-      case 'defendant':
-        serviceUserAction = 'case'
-        break
-      default:
-        serviceUserAction = 'case'
-        break
+    switch (userTypeInput) {
+        case 'applicant':
+          serviceUserAction = 'application'
+          break
+        case 'appellant':
+          serviceUserAction = 'appeal'        
+          break
+        case 'claimant':
+          serviceUserAction = 'claim'
+          break
+        case 'respondent':
+          serviceUserAction = 'response'
+          break
+        case 'defendant':
+          serviceUserAction = 'case'
+          break
+        default:
+          serviceUserAction = 'case'
+          break
 
     } 
 
-req.app.locals.serviceUserAction = serviceUserAction
+  req.app.locals.serviceUserAction = serviceUserAction
 
 // JHS 081119 if query string userType exists and a secondary (B) URL exists then set the userType to the query string value
   if (req.query.userType !== undefined && req.app.locals.serviceUserTypeB !== undefined) {
@@ -68,13 +67,14 @@ req.app.locals.serviceUserAction = serviceUserAction
     }
 
   }  
+  // set the backLink to the service return url selected
+  req.app.locals.backLink = req.app.locals.serviceReturnUrl + '/'
+
   res.render('introduction')
 
 })
 
-
-// JHS 131019 use the url query userType passed from the service to determeine which return page of the originating service should be called
-// If the url query value = user type B then use return url B otherwise use return url A as defined in heroku config variables or .env-variables or config.js
+// Use the array of the page order, questionOrder,to determine the next page to go (on submit - post) and the back link page (on load - get)
 
 // introduction
 
@@ -86,27 +86,64 @@ router.post('/introduction-next-q', function (req, res) {
 })
 
 
-// age
+// age Back Link
+
+router.get('/age', function(req, res) {
+  var thisQ = 'age'
+  for (var i = 0; i < questionOrder.length; i++) {
+     if (questionOrder[i] == thisQ) {
+      // if this is the first page make the backLink the introduction
+      if (i==0) {
+        req.app.locals.backLink = './introduction'
+        break
+      } 
+      else {
+      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      break
+      }
+    }  
+  }
+  res.render('age')    
+})
+
 
 router.post('/age-next-q', function (req, res) {
 
   var nextQ
   var thisQ = 'age'
-    console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
   for (var i = 0; i < questionOrder.length; i++) {
      if (questionOrder[i] == thisQ) {
-      console.log('questionOrder nextQ' + questionOrder[i])
       nextQ = questionOrder[i + 1]
       break
     }  
   }
-      console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
     res.redirect('./' + nextQ)
 
 })
 
 
-// first language answer
+
+// language Back Link
+
+router.get('/language', function(req, res) {
+  var thisQ = 'language'
+  for (var i = 0; i < questionOrder.length; i++) {
+     if (questionOrder[i] == thisQ) {
+      // if this is the first page make the backLink the introduction
+      if (i==0) {
+        req.app.locals.backLink = './introduction'
+        break
+      } 
+      else {
+      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      break
+      }
+    }  
+  }
+  res.render('language')    
+})
+
+// language answer
 
 router.post('/language-next-q', function (req, res) {
 
@@ -124,12 +161,18 @@ router.post('/language-next-q', function (req, res) {
         break
       }  
     }
-    console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
     res.redirect('./' + nextQ)
   }
 })
 
 // english level 
+// english level Back Link set to language
+
+router.get('/english-level', function(req, res) {
+  req.app.locals.backLink = './language'
+  res.render('english-level')    
+})
+
 // set thisQ to language so that the next page is next in the array
 
 router.post('/english-level-next-q', function (req, res) {
@@ -142,13 +185,32 @@ router.post('/english-level-next-q', function (req, res) {
       break
     }  
   }
-      console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
 
     res.redirect('./' + nextQ) // going up a level to the nextQ
 
 })
 
-// sex
+// sex Back Link
+
+router.get('/sex', function(req, res) {
+  var thisQ = 'sex'
+  for (var i = 0; i < questionOrder.length; i++) {
+     if (questionOrder[i] == thisQ) {
+      // if this is the first page make the backLink the introduction
+      if (i==0) {
+        req.app.locals.backLink = './introduction'
+        break
+      } 
+      else {
+      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      break
+      }
+    }  
+  }
+  res.render('sex')    
+})
+
+// sex next question
 
 router.post('/sex-next-q', function (req, res) {
 
@@ -160,13 +222,32 @@ router.post('/sex-next-q', function (req, res) {
       break
     }  
   }
-      console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
 
     res.redirect('./' + nextQ) 
 
 })
 
-// gender
+// gender Back Link
+
+router.get('/gender', function(req, res) {
+  var thisQ = 'gender'
+  for (var i = 0; i < questionOrder.length; i++) {
+     if (questionOrder[i] == thisQ) {
+      // if this is the first page make the backLink the introduction
+      if (i==0) {
+        req.app.locals.backLink = './introduction'
+        break
+      } 
+      else {
+      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      break
+      }
+    }  
+  }
+  res.render('gender')    
+})
+
+// gender next question
 
 router.post('/gender-next-q', function (req, res) {
 
@@ -178,13 +259,32 @@ router.post('/gender-next-q', function (req, res) {
       break
     }  
   }
-      console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
 
     res.redirect('./' + nextQ)
 
 })
 
-// sexual orientation
+// sexual orientation Back Link
+
+router.get('/sexual-orientation', function(req, res) {
+  var thisQ = 'sexual-orientation'
+  for (var i = 0; i < questionOrder.length; i++) {
+     if (questionOrder[i] == thisQ) {
+      // if this is the first page make the backLink the introduction
+      if (i==0) {
+        req.app.locals.backLink = './introduction'
+        break
+      } 
+      else {
+      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      break
+      }
+    }  
+  }
+  res.render('sexual-orientation')    
+})
+
+// sexual orientation next question
 
 router.post('/sexual-orientation-next-q', function (req, res) {
 
@@ -196,13 +296,33 @@ router.post('/sexual-orientation-next-q', function (req, res) {
       break
     }  
   }
-      console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
 
     res.redirect('./' + nextQ)
 
 })
 
-// marriage
+
+// marriage Back Link
+
+router.get('/marriage', function(req, res) {
+  var thisQ = 'marriage'
+  for (var i = 0; i < questionOrder.length; i++) {
+     if (questionOrder[i] == thisQ) {
+      // if this is the first page make the backLink the introduction
+      if (i==0) {
+        req.app.locals.backLink = './introduction'
+        break
+      } 
+      else {
+      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      break
+      }
+    }  
+  }
+  res.render('marriage')    
+})
+
+// marriage next question
 
 router.post('/marriage-next-q', function (req, res) {
 
@@ -218,21 +338,45 @@ router.post('/marriage-next-q', function (req, res) {
 
   })
 
-// ethnicity answer
+// ethnicity Back Link
+
+router.get('/ethnicity', function(req, res) {
+  var thisQ = 'ethnicity'
+  for (var i = 0; i < questionOrder.length; i++) {
+     if (questionOrder[i] == thisQ) {
+      // if this is the first page make the backLink the introduction
+      if (i==0) {
+        req.app.locals.backLink = './introduction'
+        break
+      } 
+      else {
+      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      break
+      }
+    }  
+  }
+  res.render('ethnicity')    
+})
+
+// ethnicity answer next question and back link
 
 router.post('/ethnicity-next-q', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
-    console.log ('ethnic group' + ethnicGroup)
 
   if (ethnicGroup == "white") {
+    req.app.locals.backLink = '../ethnicity'
     res.redirect('/ethnic-group/ethnicity-white')
   } else if (ethnicGroup == "mixed-or-multiple-ethnic-groups") {
+    req.app.locals.backLink = '../ethnicity'
     res.redirect('/ethnic-group/ethnicity-mixed')
   } else if (ethnicGroup == "asian-or-asian-british") {
+    req.app.locals.backLink = '../ethnicity'
     res.redirect('/ethnic-group/ethnicity-asian')
   } else if (ethnicGroup == "black-african-black-british-or-caribbean") {
+    req.app.locals.backLink = '../ethnicity'
     res.redirect('/ethnic-group/ethnicity-black')
   } else if (ethnicGroup == "another-ethnic-group") {
+    req.app.locals.backLink = '../ethnicity'
     res.redirect('/ethnic-group/ethnicity-another')
   } else {
     var nextQ
@@ -248,13 +392,12 @@ router.post('/ethnicity-next-q', function (req, res) {
 
 })
 
-// ethicity sub pages
+// ethicity sub pages next question
 
 router.post('/ethnicity-type-next-q', function (req, res) {
 
   var nextQ
   var thisQ = 'ethnicity'
-    console.log ('thisQ ' + thisQ + ' next q ' + nextQ)
   for (var i = 0; i < questionOrder.length; i++) {
      if (questionOrder[i] == thisQ) {
       nextQ = questionOrder[i + 1]
@@ -265,7 +408,27 @@ router.post('/ethnicity-type-next-q', function (req, res) {
 
   })
 
-// religion
+// religion Back Link
+
+router.get('/religion', function(req, res) {
+  var thisQ = 'religion'
+  for (var i = 0; i < questionOrder.length; i++) {
+     if (questionOrder[i] == thisQ) {
+      // if this is the first page make the backLink the introduction
+      if (i==0) {
+        req.app.locals.backLink = './introduction'
+        break
+      } 
+      else {
+      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      break
+      }
+    }  
+  }
+  res.render('religion')    
+})
+
+// religion next question
 
 router.post('/religion-next-q', function (req, res) {
 
@@ -281,20 +444,41 @@ router.post('/religion-next-q', function (req, res) {
 
   })
 
+// disability Back Link
 
-// disability answer
+router.get('/disability', function(req, res) {
+  var thisQ = 'disability'
+  for (var i = 0; i < questionOrder.length; i++) {
+     if (questionOrder[i] == thisQ) {
+      // if this is the first page make the backLink the introduction
+      if (i==0) {
+        req.app.locals.backLink = './introduction'
+        break
+      } 
+      else {
+      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      break
+      }
+    }  
+  }
+  res.render('disability')    
+})
+
+
+// disability answer next question
 
 router.post('/disability-next-q', function (req, res) {
 
   let disabilityInformation = req.session.data['disability-information']
 
   if (disabilityInformation == 'yes') {
+    req.app.locals.backLink = '../disability'
     res.redirect('/disability/disability-yes')
   } else {
     var nextQ
     var thisQ = 'disability'
     for (var i = 0; i < questionOrder.length; i++) {
-       if (questionOrder[i] == thisQ) {
+      if (questionOrder[i] == thisQ) {
         nextQ = questionOrder[i + 1]
         break
       }  
@@ -304,24 +488,24 @@ router.post('/disability-next-q', function (req, res) {
 
 })
 
-// disability yes
-
+// disability yes next question
 
 router.post('/disability-yes-next-q', function (req, res) {
 
   let disabilityYes = req.session.data['disability-yes']
 
   if (disabilityYes == 'yes-limited-a-little' || disabilityYes == 'yes-limited-a-lot') {
+    req.app.locals.backLink = '../disability/disability-yes'
     res.redirect('/disability/disability-yes-detail')
   }
   else {
-     var nextQ
-  var thisQ = 'disability'
-  for (var i = 0; i < questionOrder.length; i++) {
-     if (questionOrder[i] == thisQ) {
-      nextQ = questionOrder[i + 1]
-      break
-    }  
+    var nextQ
+    var thisQ = 'disability'
+    for (var i = 0; i < questionOrder.length; i++) {
+      if (questionOrder[i] == thisQ) {
+        nextQ = questionOrder[i + 1]
+        break
+      }  
   }
  
     res.redirect('./' + nextQ)
@@ -336,7 +520,7 @@ router.post('/disability-details-next-q', function (req, res) {
   var nextQ
   var thisQ = 'disability'
   for (var i = 0; i < questionOrder.length; i++) {
-     if (questionOrder[i] == thisQ) {
+    if (questionOrder[i] == thisQ) {
       nextQ = questionOrder[i + 1]
       break
     }  
@@ -346,7 +530,29 @@ router.post('/disability-details-next-q', function (req, res) {
 
 })
 
-// pregnancy
+
+// pregnancy Back Link
+
+router.get('/pregnancy', function(req, res) {
+  var thisQ = 'pregnancy'
+  for (var i = 0; i < questionOrder.length; i++) {
+    if (questionOrder[i] == thisQ) {
+      // if this is the first page make the backLink the introduction
+      if (i==0) {
+        req.app.locals.backLink = './introduction'
+        break
+      } 
+      else {
+      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      break
+      }
+    }  
+  }
+  res.render('pregnancy')    
+})
+
+
+// pregnancy next question
 
 router.post('/pregnancy-next-q', function (req, res) {
 
