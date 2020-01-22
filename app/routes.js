@@ -11,7 +11,7 @@ const app = express()
 var urlQueryUserType
 
 router.get('/introduction', function(req, res) {
-  // if the user tyope is passed as a string query use that otherwise use the env var
+  // if the user type is passed as a string query use that otherwise use the env var
   var userTypeInput = req.query.userType || req.app.locals.serviceUserTypeA
 
   // JHS 211109 set user action based on the user type passed in 
@@ -21,6 +21,9 @@ router.get('/introduction', function(req, res) {
           serviceUserAction = 'application'
           break
         case 'appellant':
+          serviceUserAction = 'appeal'        
+          break
+       case 'appointee':
           serviceUserAction = 'appeal'        
           break
         case 'claimant':
