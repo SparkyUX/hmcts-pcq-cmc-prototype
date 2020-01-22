@@ -10,7 +10,6 @@ module.exports = {
   // Leave exit as the last page
 
   questionOrder: [
-  'age',
   'language',
   'sex',
   'gender',

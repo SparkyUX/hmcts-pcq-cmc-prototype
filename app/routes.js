@@ -11,6 +11,7 @@ const app = express()
 var urlQueryUserType
 
 router.get('/introduction', function(req, res) {
+
   // if the user type is passed as a string query use that otherwise use the env var
   var userTypeInput = req.query.userType || req.app.locals.serviceUserTypeA
 
@@ -44,7 +45,7 @@ router.get('/introduction', function(req, res) {
   req.app.locals.serviceUserAction = serviceUserAction
 
 // JHS 081119 if query string userType exists and a secondary (B) URL exists then set the userType to the query string value
-  if (req.query.userType !== undefined && req.app.locals.serviceUserTypeB !== undefined) {
+  if (req.query.userType !== undefined && req.app.locals.serviceReturnUrlB !== undefined) {
       urlQueryUserType = req.query.userType
   }
 // JHS 081119 if query string userType doesn't exist then use the primary user type
@@ -61,7 +62,6 @@ router.get('/introduction', function(req, res) {
   function chooseUrl() {
 // If the query string user type  = the secondary (B) process.env user type and the secondary (B) process.env URL exists
     if (urlQueryUserType == req.app.locals.serviceUserTypeB && req.app.locals.serviceReturnUrlB !== undefined) {
-
       return req.app.locals.serviceReturnUrlB
     }
     else {
@@ -70,6 +70,7 @@ router.get('/introduction', function(req, res) {
     }
 
   }  
+
   // set the backLink to the service return url selected
   req.app.locals.backLink = req.app.locals.serviceReturnUrl + '/'
 
