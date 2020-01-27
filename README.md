@@ -1,9 +1,10 @@
-# hmcts-pcq-cmcprototype #
+# hmcts-pcq-cmc-prototype #
 These are the protected characteristics questions (PCQs) to be integrated into the Civil Money Claims service
 
 ## Question order ##
 
-The age question is omitted because it is asked in the service. The rest of the questions are set in questionOrder in the config.js file (  'language',
+The age question is omitted because it is asked in the service. The rest of the questions are set in questionOrder in the config.js file (  
+  'language',
   'sex',
   'gender',
   'sexual-orientation',
