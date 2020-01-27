@@ -64,7 +64,7 @@ var useHttps = process.env.USE_HTTPS || config.useHttps
 var gtmId = process.env.GOOGLE_TAG_MANAGER_TRACKING_ID
 
 
-//JHS 091019 set up user defined configuration variables in the following order heroku config variables, the .env-variables file and config.js 
+//JHS 091019 set up user defined configuration variables in the following order heroku config variables, the .env-variables file and config.js (not currently used)
 
 var serviceReturnUrlA = process.env.SERVICE_RETURN_URL_A || config.serviceReturnUrlA
 var serviceReturnUrlB = process.env.SERVICE_RETURN_URL_B || config.serviceReturnUrlB
